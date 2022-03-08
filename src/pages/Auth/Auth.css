@@ -1,3 +1,11 @@
 .Google-Button{
-    margin: 20px
+    margin: 1em;
+}
+
+.auth-container{
+    margin-bottom: 2em;
+}
+
+.wrapper{
+    height: 80vh !important
 }

@@ -1,7 +1,11 @@
-.auth-wrapper{
+.signup-wrapper{
     margin-top: 20px;
 }
 
 .input-field {
     margin: 10px
+}
+
+.signup-button {
+    margin: 10px;
 }

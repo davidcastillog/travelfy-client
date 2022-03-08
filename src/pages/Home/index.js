@@ -13,7 +13,7 @@ export default function HomePage() {
     getUserWS().then(response =>{
       if(response.status){
       } else {
-        navigate('/auth')
+        navigate('/login')
       }
     })
   }

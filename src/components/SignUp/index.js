@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const SignUp = () => {
   const [values, setValues] = useState({
@@ -26,6 +27,10 @@ const SignUp = () => {
     });
   };
 
+  const handleSubmitLogIn = () => {
+    navigate("/login");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -43,12 +48,16 @@ const SignUp = () => {
         }
       })
       .catch((error) => {
-        return error
+        return error;
       });
   };
 
   return (
-    <div className="auth-wrapper">
+    <div className="signup-wrapper">
+      <AccountCircleIcon fontSize="large" color="primary" />
+      <Typography variant="h5" gutterBottom component="div">
+        Sign Up
+      </Typography>
       <form onSubmit={handleSubmit}>
         <TextField
           id="outlined-helperText"
@@ -68,6 +77,7 @@ const SignUp = () => {
           <TextField
             id="outlined-password-input"
             label="Password"
+            style={{ width: "79%" }}
             value={password}
             type="password"
             onChange={handleChange}
@@ -79,6 +89,7 @@ const SignUp = () => {
           <TextField
             id="outlined-confirmPassword-input"
             label="Confirm Password"
+            style={{ width: "79%" }}
             value={confirmPassword}
             type="password"
             onChange={handleChange}
@@ -90,6 +101,11 @@ const SignUp = () => {
           <Button variant="contained" onClick={handleSubmit}>
             Sign Up
           </Button>
+          <div className="login-button">
+            <Button variant="contained" onClick={handleSubmitLogIn}>
+              Already have an account? Log In
+            </Button>
+          </div>
           <Typography variant="body2" color="error">
             {error && (
               <div className="error-block">

@@ -1,22 +1,22 @@
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import SearchIcon from '@mui/icons-material/Search';
-
+import * as React from "react";
+import { styled, alpha } from "@mui/material/styles";
+import InputBase from "@mui/material/InputBase";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import SearchIcon from "@mui/icons-material/Search";
+import logo from "../../images/travelfy-white-logo.png";
 
 const pages = [];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -37,60 +37,60 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
-  const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
+  const Search = styled("div")(({ theme }) => ({
+    position: "relative",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
+    "&:hover": {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(3),
-      width: 'auto',
+      width: "auto",
     },
   }));
-  
-  const SearchIconWrapper = styled('div')(({ theme }) => ({
+
+  const SearchIconWrapper = styled("div")(({ theme }) => ({
     padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   }));
-  
+
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
+    color: "inherit",
+    "& .MuiInputBase-input": {
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create('width'),
-      width: '100%',
-      [theme.breakpoints.up('md')]: {
-        width: '20ch',
+      transition: theme.transitions.create("width"),
+      width: "100%",
+      [theme.breakpoints.up("md")]: {
+        width: "20ch",
       },
     },
   }));
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            LOGO
+            <div className="navbar-logo">Logo</div>
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -105,18 +105,18 @@ const Navbar = () => {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
@@ -130,7 +130,7 @@ const Navbar = () => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
             LOGO
           </Typography>
@@ -140,11 +140,10 @@ const Navbar = () => {
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
+              inputProps={{ "aria-label": "search" }}
             />
           </Search>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          </Box>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -153,17 +152,17 @@ const Navbar = () => {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}

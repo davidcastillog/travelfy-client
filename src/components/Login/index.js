@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -24,6 +25,10 @@ const Login = () => {
       ...values,
       [event.target.name]: event.target.value,
     });
+  };
+
+  const handleSubmitSignUp = () => {
+    navigate("/signup");
   };
 
   async function handleSubmit(e) {
@@ -47,7 +52,11 @@ const Login = () => {
   }
 
   return (
-    <div className="auth-wrapper">
+    <div className="login-wrapper">
+      <AccountCircleIcon fontSize="large" color="primary" />
+      <Typography variant="h5" gutterBottom component="div">
+        Login
+      </Typography>
       <form onSubmit={handleSubmit}>
         <TextField
           id="outlined-helperText"
@@ -66,6 +75,7 @@ const Login = () => {
         <div className="input-field">
           <TextField
             id="outlined-password-input"
+            style={{ width: "82%" }}
             label="Password"
             value={password}
             type="password"
@@ -78,6 +88,11 @@ const Login = () => {
           <Button variant="contained" onClick={handleSubmit}>
             Login
           </Button>
+          <div className="signup-button">
+            <Button variant="contained" onClick={handleSubmitSignUp}>
+              Don't have an account? Sign up
+            </Button>
+          </div>
           <Typography variant="body2" color="error">
             {error && (
               <div className="error-block">
