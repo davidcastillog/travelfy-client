@@ -1,12 +1,18 @@
 import { Routes, Route } from "react-router-dom";
-import {Home} from './pages'
+import { Home, Attractions, Auth, Hotels, Restaurants, Weather } from "./pages";
 
-function RootNavigation(props){
-    return(
-        <Routes>
-            <Route path="/" element={<Home {...props}/>} />
-        </Routes>
-    )
+function RootNavigation(props) {
+  return (
+    <Routes>
+      <Route path="/auth" element={<Auth {...props} />} />
+      <Route path="/" element={<Home {...props} />} />
+      <Route path="/attractions" element={<Attractions {...props} />} />
+      <Route path="/hotels" element={<Hotels {...props} />} />
+      <Route path="/restaurants" element={<Restaurants {...props} />} />
+      <Route path="/weather" element={<Weather {...props} />} />
+      <Route path="*" element={<Home {...props} />} />
+    </Routes>
+  );
 }
 
 export default RootNavigation;

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./App.css";
-import { Navbar } from "./components";
 import RootNavigation from "./RootNavigation";
+import { NavBar } from "./components";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+
   const handleLogout = () => {
     setUser(null);
   };
@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <NavBar />
       <RootNavigation {...{ user, authenticate, handleLogout }} />
     </div>
   );
