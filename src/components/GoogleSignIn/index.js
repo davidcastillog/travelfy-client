@@ -5,11 +5,9 @@ import { baseURL } from "../../api/ServerAPI";
 const GoogleSignIn = () => {
   const responseSuccessGoogle = (response) => {
     const tokenId = response.tokenId;
-    axios({
-      method: "POST",
-      url: baseURL + "/auth/google",
-      data: { tokenId },
-    })
+
+    axios
+      .post(`${baseURL}/auth/google`, { tokenId })
       .then((res) => {
         localStorage.setItem("token", tokenId);
       })
@@ -24,14 +22,14 @@ const GoogleSignIn = () => {
 
   return (
     <div className="google-wrapper">
-        <GoogleLogin
-          clientId="567704572636-rhu0gql7b0mjernmjvr0v3b7ce1oppj4.apps.googleusercontent.com"
-          buttonText="Login with Google"
-          onSuccess={responseSuccessGoogle}
-          onFailure={responseErrorGoogle}
-          cookiePolicy={"single_host_origin"}
-          isSignedIn={true}
-        />
+      <GoogleLogin
+        clientId="567704572636-rhu0gql7b0mjernmjvr0v3b7ce1oppj4.apps.googleusercontent.com"
+        buttonText="Login with Google"
+        onSuccess={responseSuccessGoogle}
+        onFailure={responseErrorGoogle}
+        cookiePolicy={"single_host_origin"}
+        isSignedIn={true}
+      />
     </div>
   );
 };

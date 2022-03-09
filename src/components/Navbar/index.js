@@ -13,7 +13,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import SearchIcon from "@mui/icons-material/Search";
-import logo from "../../images/travelfy-white-logo.png";
+import TravelfyLogo from "../../images/travelfy-logo-small.png";
 
 const pages = [];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -87,9 +87,10 @@ const Navbar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            <div className="navbar-logo">Logo</div>
+            <div className="travelfy-logo">
+              <img src={TravelfyLogo} alt="travelfy-logo" />
+            </div>
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -131,9 +132,7 @@ const Navbar = () => {
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-          >
-            LOGO
-          </Typography>
+          ></Typography>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

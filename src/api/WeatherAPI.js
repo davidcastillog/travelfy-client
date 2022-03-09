@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const apiWeather = axios.create({
-  baseURL: "https://community-open-weather-map.p.rapidapi.com/forecast",
+  baseURL: "https://community-open-weather-map.p.rapidapi.com/forecast/daily",
 });
 
 apiWeather.defaults.headers.common["x-rapidapi-key"] =
@@ -9,10 +9,10 @@ apiWeather.defaults.headers.common["x-rapidapi-key"] =
 apiWeather.defaults.headers.common["x-rapidapi-host"] =
   "community-open-weather-map.p.rapidapi.com";
 
-export const getWeather = async (value) => {
+export const getWeather = async (lat, lng) => {
   try {
     const { data } = await apiWeather.get(URL, {
-      params: { q: value, cnt: "5", units: "metric" },
+      params: { lat, lon: lng, cnt: "5", units: "metric" },
     });
     return data;
   } catch (error) {
