@@ -1,1 +1,0 @@
-import './PlaceCard.css'

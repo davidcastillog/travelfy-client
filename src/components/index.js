@@ -1,10 +1,12 @@
-export { default as GoogleSignIn } from './GoogleSignIn';
+export { default as GoogleSignIn } from "./GoogleSignIn";
 export { default as GoogleLOut } from "./GoogleLOut";
+export { default as Map } from "./Map";
 export { default as NavBar } from "./Navbar";
 export { default as SignUp } from "./SignUp";
-export {default as Login } from './Login';
-export {default as Loading } from './Loading';
+export { default as Login } from "./Login";
+export { default as Loading } from "./Loading";
 export { default as PlacesList } from "./PlacesList";
+export { default as Filters } from "./Filters";
 // export { default as Footer } from "./Footer";
 // export { default as LeftMenu } from "./LeftMenu";
 // export { default as Map } from "./Map";

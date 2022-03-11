@@ -9,46 +9,20 @@ apiTravel.defaults.headers.common["x-rapidapi-key"] =
 apiTravel.defaults.headers.common["x-rapidapi-host"] =
   "travel-advisor.p.rapidapi.com";
 
-export const searchPlace = async (value) => {
+export const getPlaces = async (type, sw, ne) => {
   try {
-    const { data } = await apiTravel.get(
-      `/locations/v2/auto-complete?query=${value}`
-    );
+    const {
+      data: { data },
+    } = await apiTravel.get(`/${type}/list-in-boundary`, {
+      params: {
+        bl_latitude: sw.lat,
+        bl_longitude: sw.lng,
+        tr_longitude: ne.lng,
+        tr_latitude: ne.lat,
+      },
+    });
     return data;
   } catch (error) {
     return error;
   }
 };
-
-export const searchAttractions = async (value) => {
-  try {
-    const { data } = await apiTravel.get(
-      `/attractions/list?location_id=${value}`
-    );
-    return data;
-  } catch (error) {
-    return error;
-  }
-};
-
-export const searchRestaurants = async (value) => {
-    try {
-      const { data } = await apiTravel.get(
-        `/restaurants/list?location_id=${value}`
-      );
-      return data;
-    } catch (error) {
-      return error;
-    }
-  };
-
-  export const searchHotels = async (value) => {
-    try {
-      const { data } = await apiTravel.get(
-        `/hotels/list?location_id=${value}`
-      );
-      return data;
-    } catch (error) {
-      return error;
-    }
-  };

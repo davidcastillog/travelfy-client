@@ -1,20 +1,15 @@
 import "./Home.css";
 import { useState, useEffect } from "react";
-import { searchPlace } from "../../api/TravelAPI";
 import { useNavigate } from "react-router-dom";
 import { getUserWS } from "../../services/authWs";
 import { geoLocationData } from "../../api/GeoLocationAPI";
-import { PlacesList } from "../../components";
 
-export default function HomePage() {
+export default function HomePage(props) {
   // User data
   const [user, setUser] = useState({});
   // User location from IP
-  const [userCoords, setUserCoords] = useState({});
-  // Places list
-  const [places, setPlaces] = useState([]);
-  // Search query
-  const [valor, setValor] = useState("");
+  const [coordinates, setCoordinates] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -23,6 +18,7 @@ export default function HomePage() {
   const verifyUser = async () => {
     const response = await getUserWS();
     if (response.status) {
+      props.authenticate(response.data.user)
       setUser(response.data.user);
     } else {
       navigate("/login");
@@ -33,26 +29,15 @@ export default function HomePage() {
   const userGeoLocation = async () => {
     try {
       const res = await geoLocationData();
-      const { latitude, longitude } = res;
-      setUserCoords({ latitude, longitude });
+      const { latitude: lat, longitude: lng } = res;
+      setCoordinates({ lat, lng });
+      setIsLoading(false);
     } catch (error) {
       return error;
     }
   };
 
-  // Handle input change and set state
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setValor(value);
-  };
-
-  // Search for a place by name
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = await searchPlace(valor);
-    setPlaces(data);
-    console.log(data);
-  };
+  console.log("User Coordinates", coordinates);
 
   useEffect(() => {
     verifyUser();
@@ -60,13 +45,8 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div>
+    <div style={{ height: "70vh", width: "100%" }}>
       <h1>Welcome {user.email}</h1>
-      <p>{}</p>
-      <form onSubmit={handleSubmit}>
-        <input name="nombre" onChange={handleChange} />
-        <button>Search</button>
-      </form>
     </div>
   );
 }
