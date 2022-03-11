@@ -1,6 +1,6 @@
 import "./Auth.css";
 import Container from "@mui/material/Container";
-import { Login, SignUp, GoogleSignIn, GoogleLOut } from "../../components";
+import { Login, SignUp, GoogleSignIn } from "../../components";
 import { getUserWS } from "../../services/authWs";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -26,18 +26,22 @@ export default function Auth({ authenticate }) {
   }, []);
 
   return (
-    <div className="wrapper">
-      <Paper>
-        <Container className="auth-container" maxWidth="sm">
+    <>
+      <Container maxWidth="sm">
+        <Paper>
           {isLoginPage ? <Login /> : <SignUp />}
-          <div className="Google-Button">
+          <div className="or-divider">
             <Divider>
               <Chip label="OR" />
             </Divider>
           </div>
-          {isAuthenticated ? <GoogleSignIn /> : <GoogleLOut />}
-        </Container>
-      </Paper>
-    </div>
+          {isLoginPage ? (
+            <GoogleSignIn status="Log in" />
+          ) : (
+            <GoogleSignIn status="Sign Up" />
+          )}
+        </Paper>
+      </Container>
+    </>
   );
 }

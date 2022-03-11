@@ -72,10 +72,10 @@ const Login = () => {
           }}
           name="email"
         />
-        <div className="input-field">
+        <div className="auth-input-field">
           <TextField
             id="outlined-password-input"
-            style={{ width: "82%" }}
+            style={{ width: "43%" }}
             label="Password"
             value={password}
             type="password"

@@ -7,8 +7,7 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 
-const Filters = ({type,setType,rating,setRating}) => {
-
+const Filters = ({ type, setType, rating, setRating }) => {
   return (
     <>
       <Grid
@@ -19,7 +18,7 @@ const Filters = ({type,setType,rating,setRating}) => {
         direction="row"
         className="filter-grid"
         item
-        xs={4}
+        xs={12}
       >
         <Typography variant="button" component="div">
           Filters
@@ -43,9 +42,7 @@ const Filters = ({type,setType,rating,setRating}) => {
           id="rating"
           name="simple-controlled"
           value={rating}
-          onChange={(e, newValue) => {
-            setRating(newValue);
-          }}
+          onChange={(e)=>setRating(e.target.value)}
         />
       </Grid>
     </>

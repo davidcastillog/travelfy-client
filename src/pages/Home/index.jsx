@@ -9,7 +9,7 @@ export default function HomePage(props) {
   const [user, setUser] = useState({});
   // User location from IP
   const [coordinates, setCoordinates] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -25,8 +25,11 @@ export default function HomePage(props) {
     }
   };
 
+  console.log('USER IN STATE', props.user)
+
   // Get user Coords from IP as inicial reference
   const userGeoLocation = async () => {
+    setIsLoading(true);
     try {
       const res = await geoLocationData();
       const { latitude: lat, longitude: lng } = res;

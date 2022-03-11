@@ -73,11 +73,11 @@ const SignUp = () => {
           }}
           name="email"
         />
-        <div className="input-field">
+        <div className="auth-input-field">
           <TextField
             id="outlined-password-input"
             label="Password"
-            style={{ width: "79%" }}
+            style={{ width: "43%" }}
             value={password}
             type="password"
             onChange={handleChange}
@@ -85,11 +85,11 @@ const SignUp = () => {
             autoComplete="current-password"
           />
         </div>
-        <div className="input-field">
+        <div className="auth-input-field">
           <TextField
             id="outlined-confirmPassword-input"
             label="Confirm Password"
-            style={{ width: "79%" }}
+            style={{ width: "43%" }}
             value={confirmPassword}
             type="password"
             onChange={handleChange}

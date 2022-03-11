@@ -1,11 +1,7 @@
-.Google-Button{
+.or-divider{
     margin: 1em;
 }
 
-.auth-container{
-    margin-bottom: 2em;
-}
-
-.wrapper{
-    height: 80vh !important
+.google-wrapper{
+    padding-bottom: 25px;
 }

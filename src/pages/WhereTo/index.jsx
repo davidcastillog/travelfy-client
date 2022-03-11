@@ -1,29 +1,33 @@
 import "./WhereTo.css";
 import { useState, useEffect } from "react";
 import { getPlaces } from "../../api/TravelAPI";
-import { useNavigate } from "react-router-dom";
+import { PlacesList, Map, SearchBox, Filters } from "../../components";
+// TODO: import { useNavigate } from "react-router-dom";
 // TODO: import { getUserWS } from "../../services/authWs"; AUTHENTICATE USERS
 import { geoLocationData } from "../../api/GeoLocationAPI";
+// Material UI
 import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { PlacesList, Map } from "../../components";
 
-function WhereTo() {
+function WhereTo(props) {
   // User location from IP
   const [coordinates, setCoordinates] = useState({});
-  // Map Limits
+  // Map Limits (NorthEast and SouthWest)
   const [limits, setLimits] = useState();
   // Places list
   const [places, setPlaces] = useState([]);
+  console.log(places)
   // Type of Place
-  const [type, setType] = useState('hotels')
+  const [type, setType] = useState("attractions");
+  const [rating, setRating] = useState("3");
   // Loading Control
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadingPlaces, setLoadingPlaces] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingPlaces, setLoadingPlaces] = useState(false);
 
   // Get user coordinates from IP and set them as initial coordinates
   const userGeoLocation = async () => {
+    setIsLoading(true);
     try {
       const res = await geoLocationData();
       const { latitude: lat, longitude: lng } = res;
@@ -34,46 +38,55 @@ function WhereTo() {
     }
   };
 
-  // Get places from API
-  useEffect(() => {
-    if(limits){
-      setLoadingPlaces(true)
-      getPlaces(type, limits.sw, limits.ne)
-      .then((data) => {
-        // Filter to only include places with names
-        const places = data.filter((place) => place.name);
-        setPlaces(places);
-        setLoadingPlaces(false);
-      });
-    }
-  }, [limits,type]);
-
   // Set initial coordinates and limits
   useEffect(() => {
     userGeoLocation();
   }, []);
 
-  console.log('LIMITS', limits)
-  console.log('PLACES', places)
+  // Get places from API
+  useEffect(() => {
+    if (limits) {
+      setLoadingPlaces(true);
+      getPlaces(type, limits.sw, limits.ne).then((data) => {
+        const places = data.filter(
+          (place) => place.name && place.rating > rating
+        );
+        setPlaces(places);
+        setLoadingPlaces(false);
+      });
+    }
+  }, [limits, type, rating]);
 
   return (
     <>
       <CssBaseline />
-      <Grid container spacing={0} style={{ width: "100%" }}>
+      <Grid container spacing={1} style={{ height: "92vh", width: "100%" }}>
+        <Grid container className="search-filter-bar" spacing={2}>
+          <Grid item xs={6}>
+            <SearchBox />
+          </Grid>
+          <Grid item xs={6}>
+            <Filters
+              type={type}
+              setType={setType}
+              rating={rating}
+              setRating={setRating}
+            />
+          </Grid>
+        </Grid>
         <Grid item xs={12} md={6}>
-          <Paper variant="outlined">
-            <PlacesList
-            loadingPlaces={loadingPlaces}
-            places={places} />
-          </Paper>
+          <PlacesList loadingPlaces={loadingPlaces} places={places} />
         </Grid>
         <Grid item xs={12} md={6}>
           <Paper variant="outlined">
-            {!isLoading && <Map
-            coordinates={coordinates}
-            setLimits={setLimits}
-            setCoordinates={setCoordinates}
-            />}
+            {!isLoading && (
+              <Map
+                coordinates={coordinates}
+                setLimits={setLimits}
+                setCoordinates={setCoordinates}
+                places={places}
+              />
+            )}
           </Paper>
         </Grid>
       </Grid>
