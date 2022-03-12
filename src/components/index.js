@@ -9,3 +9,4 @@ export { default as Filters } from "./Filters";
 export { default as PlaceMarker } from "./PlaceMarker";
 export { default as NoPlacesFound } from "./NoPlacesFound";
 export { default as SearchBox } from "./SearchBar";
+export { default as Loader } from "./Loader";

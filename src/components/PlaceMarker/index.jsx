@@ -15,6 +15,7 @@ const PlaceMarker = ({ place }) => {
           name="read-only"
           size="small"
           value={Number(place.rating)}
+          precision={0.5}
           readOnly
         />
       </Paper>

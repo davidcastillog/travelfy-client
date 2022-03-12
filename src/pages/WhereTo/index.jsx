@@ -17,10 +17,10 @@ function WhereTo(props) {
   const [limits, setLimits] = useState();
   // Places list
   const [places, setPlaces] = useState([]);
-  console.log(places)
+  console.log(places);
   // Type of Place
   const [type, setType] = useState("attractions");
-  const [rating, setRating] = useState("3");
+  const [rating, setRating] = useState(3);
   // Loading Control
   const [isLoading, setIsLoading] = useState(false);
   const [loadingPlaces, setLoadingPlaces] = useState(false);

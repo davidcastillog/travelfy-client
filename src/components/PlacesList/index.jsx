@@ -2,13 +2,14 @@ import "./PlacesList.css";
 import Grid from "@mui/material/Grid";
 import PlaceCard from "../PlaceCard";
 import NoPlacesFound from "../NoPlacesFound";
+import Loader from "../Loader";
 
 const PlacesList = ({ places, loadingPlaces }) => {
 
   return (
     <>
       {loadingPlaces ? (
-        <div>Loading...</div>
+        <> <Loader /> </>
       ) : places.length > 0 ? (
         <Grid container spacing={2}>
           {places?.map((place, i) => (

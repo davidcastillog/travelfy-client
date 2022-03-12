@@ -19,6 +19,15 @@ export const signUpWS = async (data) => {
   }
 };
 
+export const changePasswordWS = async (data) => {
+  try {
+    const res = await apiServer.post('/auth/changepassword', data);
+    return successStatus(res);
+  } catch (error) {
+    return internalServerError(error);
+  }
+};
+
 export const logoutWS = async () => {
   try {
     const res = await apiServer.get('/auth/logout');

@@ -42,7 +42,7 @@ const Filters = ({ type, setType, rating, setRating }) => {
           id="rating"
           name="simple-controlled"
           value={rating}
-          onChange={(e)=>setRating(e.target.value)}
+          onChange={(e)=>setRating(Number(e.target.value))}
         />
       </Grid>
     </>
