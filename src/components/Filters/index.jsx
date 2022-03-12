@@ -24,7 +24,7 @@ const Filters = ({ type, setType, rating, setRating }) => {
           Filters
         </Typography>
         <FormControl sx={{ m: 1, minWidth: 135 }}>
-          <InputLabel id="demo-simple-select-label">Select</InputLabel>
+          <InputLabel id="demo-simple-select-label">Select </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"

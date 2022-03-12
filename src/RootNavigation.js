@@ -1,5 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import { Home, WhereTo, Auth, MyPlaces, MyTrips, Profile } from "./pages";
+import {
+  Home,
+  Explore,
+  Auth,
+  MyTrips,
+  Profile,
+  Weather,
+  AroundMe,
+} from "./pages";
 
 function RootNavigation(props) {
   return (
@@ -7,10 +15,11 @@ function RootNavigation(props) {
       <Route path="/" element={<Home {...props} />} />
       <Route path="/login" element={<Auth {...props} />} />
       <Route path="/signup" element={<Auth {...props} />} />
-      <Route path="/whereto" element={<WhereTo {...props} />} />
-      <Route path="/profile" element={<Profile {...props} />} />
+      <Route path="/explore" element={<Explore {...props} />} />
+      <Route path="/aroundme" element={<AroundMe {...props} />} />
+      <Route path="/weather" element={<Weather {...props} />} />
       <Route path="/mytrips" element={<MyTrips {...props} />} />
-      <Route path="/myplaces" element={<MyPlaces {...props} />} />
+      <Route path="/profile" element={<Profile {...props} />} />
       <Route path="*" element={<Home {...props} />} />
     </Routes>
   );

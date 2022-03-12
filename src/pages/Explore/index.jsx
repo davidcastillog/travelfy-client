@@ -1,4 +1,4 @@
-import "./WhereTo.css";
+import "./Explore.css";
 import { useState, useEffect } from "react";
 import { getPlaces } from "../../api/TravelAPI";
 import { PlacesList, Map, SearchBox, Filters } from "../../components";
@@ -10,7 +10,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
-function WhereTo(props) {
+function Explore(props) {
   // User location from IP
   const [coordinates, setCoordinates] = useState({});
   // Map Limits (NorthEast and SouthWest)
@@ -60,12 +60,12 @@ function WhereTo(props) {
   return (
     <>
       <CssBaseline />
-      <Grid container spacing={1} style={{ height: "92vh", width: "100%" }}>
+      <Grid container spacing={2}>
         <Grid container className="search-filter-bar" spacing={2}>
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             <SearchBox />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             <Filters
               type={type}
               setType={setType}
@@ -94,4 +94,4 @@ function WhereTo(props) {
   );
 }
 
-export default WhereTo;
+export default Explore;
