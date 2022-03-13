@@ -1,3 +1,7 @@
-.search-filter-bar{
+.search-filter-grid{
     padding-top: 20px;
+}
+
+.search-box-wrapper{
+    padding-left: 50px;
 }

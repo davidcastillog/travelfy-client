@@ -28,6 +28,15 @@ export const getOneTrip = async (id, data) => {
   }
 };
 
+export const getAllPlacesFromTrip = async (id, data) => {
+  try {
+    const res = await apiServer.get(`/trips/${id}/places`, data);
+    return successStatus(res);
+  } catch (error) {
+    return internalServerError(error);
+  }
+};
+
 export const updateTrip = async (id, data) => {
   try {
     const res = await apiServer.patch(`/trips/update/${id}`, data);

@@ -61,9 +61,11 @@ function Explore(props) {
     <>
       <CssBaseline />
       <Grid container spacing={2}>
-        <Grid container className="search-filter-bar" spacing={2}>
-          <Grid item xs={12} md={6}>
-            <SearchBox />
+        <Grid container className="search-filter-grid" spacing={2}>
+          <Grid item xs={12} md={6} className="search-box-grid">
+            <SearchBox
+              setCoordinates={setCoordinates}
+            />
           </Grid>
           <Grid item xs={12} md={6}>
             <Filters
@@ -74,10 +76,15 @@ function Explore(props) {
             />
           </Grid>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          style={{ maxHeight: "80vh", overflow: "auto" }}
+        >
           <PlacesList loadingPlaces={loadingPlaces} places={places} />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} style={{ maxHeight: "100%" }}>
           <Paper variant="outlined">
             {!isLoading && (
               <Map

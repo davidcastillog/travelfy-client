@@ -11,9 +11,8 @@ const Map = ({ places, coordinates, setCoordinates, setLimits }) => {
           // Map Style (Google Developers Plattaform)
           mapId={process.env.REACT_MAP_GOOGLE_MAP_ID}
           center={coordinates}
-          defaultZoom={15}
+          defaultZoom={14}
           options={{ disableDefaultUI: true, zoomControl: true }}
-          // Update Map Coordinates and Limits
           onChange={(e) => {
             setCoordinates({ lat: e.center.lat, lng: e.center.lng });
             setLimits({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });

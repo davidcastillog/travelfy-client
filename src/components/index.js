@@ -8,6 +8,7 @@ export { default as PlacesList } from "./PlacesList";
 export { default as Filters } from "./Filters";
 export { default as PlaceMarker } from "./PlaceMarker";
 export { default as NoPlacesFound } from "./NoPlacesFound";
-export { default as SearchBox } from "./SearchBar";
+export { default as SearchBox } from "./SearchBox";
 export { default as Loader } from "./Loader";
 export { default as SavePlacePopUp } from "./SavePlacePopUp";
+export { default as NewTripPopUp } from './NewTripPopUp';
