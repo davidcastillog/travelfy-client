@@ -13,3 +13,4 @@ export { default as Loader } from "./Loader";
 export { default as SavePlacePopUp } from "./SavePlacePopUp";
 export { default as NewTripPopUp } from './NewTripPopUp';
 export { default as TripCard } from './TripCard';
+export { default as AddTripCard } from './AddTripCard';

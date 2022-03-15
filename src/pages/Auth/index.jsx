@@ -8,7 +8,7 @@ import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 
-export default function Auth({ authenticate }) {
+export default function Auth(props) {
   const navigate = useNavigate();
   const location = useLocation();
   const isLoginPage = location.pathname === "/login";

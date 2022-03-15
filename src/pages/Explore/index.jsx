@@ -10,7 +10,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
-function Explore(props) {
+function Explore({user,...props}) {
   // User location from IP
   const [coordinates, setCoordinates] = useState({});
   // Map Limits (NorthEast and SouthWest)
@@ -80,7 +80,7 @@ function Explore(props) {
           md={6}
           style={{ maxHeight: "80vh", overflow: "auto" }}
         >
-          <PlacesList loadingPlaces={loadingPlaces} places={places} user={props.user} />
+          <PlacesList loadingPlaces={loadingPlaces} places={places} user={user} />
         </Grid>
         <Grid item xs={12} md={6} style={{ maxHeight: "100%" }}>
           <Paper variant="outlined">

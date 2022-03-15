@@ -1,6 +1,6 @@
 import "./Profile.css";
 
-const Profile = () => {
+const Profile = ({user,...props}) => {
   return (
     <>
     <h1>Profile</h1>

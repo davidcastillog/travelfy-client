@@ -9,9 +9,9 @@ import InputAdornment from "@mui/material/InputAdornment";
 const SearchBox = ({ setCoordinates }) => {
 
   useEffect(()=>{
-    const gmapScriptEl = document.createElement(`script`)
-    gmapScriptEl.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}&libraries=places`
-    document.querySelector(`body`).insertAdjacentElement(`beforeend`, gmapScriptEl)},[])
+    const gPlaceScript = document.createElement(`script`)
+    gPlaceScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}&libraries=places`
+    document.querySelector(`body`).insertAdjacentElement(`beforeend`, gPlaceScript)},[])
 
   function InputAPI() {
     const { ref } = usePlacesWidget({

@@ -7,7 +7,6 @@ import NoPlacesFound from "../NoPlacesFound";
 import Loader from "../Loader";
 
 const PlacesList = ({ places, loadingPlaces, user }) => {
-  console.log('PLACES LIST USER',user)
   const [userTrips, setUserTrips] = useState([]);
 
   const getUserData = async () => {
