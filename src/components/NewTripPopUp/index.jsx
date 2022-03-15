@@ -15,7 +15,7 @@ import Stack from "@mui/material/Stack";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 
-const NewTripPopUp = ({ place, open, setOpen, tripId, setTripId }) => {
+const NewTripPopUp = ({ place, open, setOpen, tripId, setTripId, ...props }) => {
   const [error, setError] = useState(null);
   const [tripName, setTripName] = useState("");
   const [isDisable, setIsDisable] = useState(false);
@@ -42,6 +42,7 @@ const NewTripPopUp = ({ place, open, setOpen, tripId, setTripId }) => {
         setTripId(response.data.trip._id);
         setIsDisable(true);
         setNotCreated(null);
+        props.updateTrip(response.data.trip)
       })
       .catch((error) => {
         setError(error);

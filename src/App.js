@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import "./App.css";
+import { useState, useEffect } from "react";
 import RootNavigation from "./RootNavigation";
 import { NavBar } from "./components";
 import { getUserWS } from "./services/authWs";
@@ -7,13 +7,12 @@ import { getUserWS } from "./services/authWs";
 function App() {
   const [user, setUser] = useState(null);
 
-  // const verifyUser = async () => {
-  //   const response = await getUserWS();
-  //   console.log('RESPONSE',response)
-  //   if (response.statusCode === 200 || response.statusCode === 201 ) {
-  //     setUser(response.data.user);
-  //   }
-  // };
+  const verifyUser = async () => {
+    const response = await getUserWS();
+    if (response.statusCode === 200 || response.statusCode === 201) {
+      setUser(response.data.user);
+    }
+  };
 
   const handleLogout = () => {
     setUser(null);
@@ -23,10 +22,9 @@ function App() {
     setUser(user);
   };
 
-  // useEffect(() => {
-  //   verifyUser();
-  // }, []);
-
+  useEffect(() => {
+    verifyUser();
+  }, []);
 
   return (
     <div className="App">

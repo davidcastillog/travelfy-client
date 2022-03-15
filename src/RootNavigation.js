@@ -7,6 +7,7 @@ import {
   Profile,
   Weather,
   AroundMe,
+  MyPlaces,
 } from "./pages";
 
 function RootNavigation(props) {
@@ -19,6 +20,7 @@ function RootNavigation(props) {
       <Route path="/aroundme" element={<AroundMe {...props} />} />
       <Route path="/weather" element={<Weather {...props} />} />
       <Route path="/mytrips" element={<MyTrips {...props} />} />
+      <Route path="/myplaces" element={<MyPlaces {...props} />} />
       <Route path="/profile" element={<Profile {...props} />} />
       <Route path="*" element={<Home {...props} />} />
     </Routes>

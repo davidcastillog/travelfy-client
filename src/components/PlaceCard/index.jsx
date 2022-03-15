@@ -1,6 +1,5 @@
 import "./PlaceCard.css";
-import { useState, useEffect } from "react";
-import { getAllTrips } from "../../services/tripsWs";
+import { useState } from "react";
 import NewTripPopUp from "../NewTripPopUp";
 import SavePlacePopUp from "../SavePlacePopUp";
 import Typography from "@mui/material/Typography";
@@ -8,25 +7,13 @@ import { Paper } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
 
-const PlaceCard = ({ place }) => {
+const PlaceCard = ({ place, userTrips, setUserTrips }) => {
   const [open, setOpen] = useState(false);
-  const [userTrips, setUserTrips] = useState([]);
   const [tripId, setTripId] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
   };
-
-  const getUserData = async () => {
-    const response = await getAllTrips();
-    if (response.status) {
-      setUserTrips(response.data.trips);
-    }
-  };
-
-  useEffect(() => {
-    getUserData();
-  }, []);
 
   return (
     <>
@@ -75,6 +62,7 @@ const PlaceCard = ({ place }) => {
             setOpen={setOpen}
             setTripId={setTripId}
             userTrips={userTrips}
+            updateTrip={(trip)=>setUserTrips([...userTrips,trip])}
           />
         )}
       </Paper>

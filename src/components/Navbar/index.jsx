@@ -125,7 +125,17 @@ export default function MiniDrawer() {
             className="travelfy-logo-wrapper"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { md: "flex" } }}
+            sx={{
+              mr: 2,
+              display: {
+                md: "flex",
+                margin: 'auto',
+                position: "absolute",
+                left: "45%",
+                top: "20%",
+                maxWidth: '50%',
+              },
+            }}
           >
             <div className="travelfy-logo">
               <Link to="/">

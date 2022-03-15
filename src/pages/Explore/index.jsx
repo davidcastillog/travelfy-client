@@ -63,9 +63,7 @@ function Explore(props) {
       <Grid container spacing={2}>
         <Grid container className="search-filter-grid" spacing={2}>
           <Grid item xs={12} md={6} className="search-box-grid">
-            <SearchBox
-              setCoordinates={setCoordinates}
-            />
+            <SearchBox setCoordinates={setCoordinates} />
           </Grid>
           <Grid item xs={12} md={6}>
             <Filters
@@ -82,7 +80,7 @@ function Explore(props) {
           md={6}
           style={{ maxHeight: "80vh", overflow: "auto" }}
         >
-          <PlacesList loadingPlaces={loadingPlaces} places={places} />
+          <PlacesList loadingPlaces={loadingPlaces} places={places} user={props.user} />
         </Grid>
         <Grid item xs={12} md={6} style={{ maxHeight: "100%" }}>
           <Paper variant="outlined">

@@ -1,10 +1,25 @@
 import "./PlacesList.css";
+import { useState, useEffect } from "react";
+import { getAllTrips } from "../../services/tripsWs";
 import Grid from "@mui/material/Grid";
 import PlaceCard from "../PlaceCard";
 import NoPlacesFound from "../NoPlacesFound";
 import Loader from "../Loader";
 
 const PlacesList = ({ places, loadingPlaces, user }) => {
+  console.log('PLACES LIST USER',user)
+  const [userTrips, setUserTrips] = useState([]);
+
+  const getUserData = async () => {
+    const response = await getAllTrips();
+    if (response.status) {
+      setUserTrips(response.data.trips);
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   return (
     <>
@@ -14,7 +29,7 @@ const PlacesList = ({ places, loadingPlaces, user }) => {
         <Grid container spacing={2}>
           {places?.map((place, i) => (
             <Grid key={i} item xs={12}>
-              <PlaceCard place={place} user={user} />
+              <PlaceCard place={place} user={user} userTrips={userTrips} setUserTrips={setUserTrips} />
             </Grid>
           ))}
         </Grid>

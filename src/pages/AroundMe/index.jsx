@@ -8,15 +8,17 @@ import { geoLocationData } from "../../api/GeoLocationAPI";
 import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 function AroundMe(props) {
   // User location from IP
   const [coordinates, setCoordinates] = useState({});
+  const [userLoc, setUserLoc] = useState({});
   // Map Limits (NorthEast and SouthWest)
   const [limits, setLimits] = useState();
   // Places list
   const [places, setPlaces] = useState([]);
-  console.log(places);
   // Type of Place
   const [type, setType] = useState("attractions");
   const [rating, setRating] = useState(3);
@@ -29,8 +31,9 @@ function AroundMe(props) {
     setIsLoading(true);
     try {
       const res = await geoLocationData();
-      const { latitude: lat, longitude: lng } = res;
+      const { latitude: lat, longitude: lng, city, country_name } = res;
       setCoordinates({ lat, lng });
+      setUserLoc({ city, country_name });
       setIsLoading(false);
     } catch (error) {
       return error;
@@ -61,12 +64,26 @@ function AroundMe(props) {
       <CssBaseline />
       <Grid container spacing={2}>
         <Grid container className="search-filter-grid" spacing={2}>
-          <Grid item xs={12} md={6} className="search-box-grid">
-            <SearchBox
-              setCoordinates={setCoordinates}
-            />
+          <Grid item xs={12} md={6} className="user-loc-wrapper">
+            <Grid
+              container
+              spacing={2}
+              alignItems="center"
+              justifyContent="center"
+              direction="column"
+              className="user-loc-grid"
+              item
+              xs={12}
+            >
+              <Typography variant="subtitle1" component="div">
+                Places Around
+              </Typography>
+              <Typography variant="button" component="div">
+                {userLoc.city}, {userLoc.country_name}
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} className="filters-grid-around">
             <Filters
               type={type}
               setType={setType}
@@ -81,7 +98,7 @@ function AroundMe(props) {
           md={6}
           style={{ maxHeight: "80vh", overflow: "auto" }}
         >
-          <PlacesList loadingPlaces={loadingPlaces} places={places} />
+          <PlacesList loadingPlaces={loadingPlaces} places={places} user={props.user}/>
         </Grid>
         <Grid item xs={12} md={6} style={{ maxHeight: "100%" }}>
           <Paper variant="outlined">
