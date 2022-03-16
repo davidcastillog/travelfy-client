@@ -4,7 +4,7 @@ import { getAllTrips } from "../../services/tripsWs";
 import { TripCard, AddTripCard } from "../../components";
 import { useNavigate } from "react-router-dom";
 import { getUserWS } from "../../services/authWs";
-import Container from '@mui/material/Container';
+import Container from "@mui/material/Container";
 
 function MyTrips({ user, ...props }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,11 +20,7 @@ function MyTrips({ user, ...props }) {
     }
   };
 
-  useEffect(() => {
-    verifyUser();
-    findUserTrips();
-  }, []);
-
+  // Get all trips from user
   const findUserTrips = async () => {
     const haveTrips = await getAllTrips();
     if (haveTrips) {
@@ -33,6 +29,11 @@ function MyTrips({ user, ...props }) {
     }
   };
 
+  useEffect(() => {
+    verifyUser();
+    findUserTrips();
+  }, []);
+  
   return (
     <>
       <Container
@@ -41,12 +42,12 @@ function MyTrips({ user, ...props }) {
         sx={{ display: "flex", flexWrap: "wrap" }}
       >
         {!isLoading && userTrips.length > 0 ? (
-          userTrips.map((trip,i) => (
-            <>
+          <>
+            {userTrips.map((trip, i) => (
               <TripCard key={i} trip={trip} />
-              <AddTripCard />
-            </>
-          ))
+            ))}
+            <AddTripCard />
+          </>
         ) : (
           <AddTripCard />
         )}

@@ -1,9 +1,4 @@
 import "./Home.css";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { getUserWS } from "../../services/authWs";
-import { geoLocationData } from "../../api/GeoLocationAPI";
-import SearchBox from "../../components/SearchBox";
 
 export default function HomePage({user,...props}) {
 

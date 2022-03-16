@@ -24,7 +24,7 @@ import EditIcon from "@mui/icons-material/Edit";
 const TripCard = ({ trip }) => {
   const [places, setPlaces] = useState([]);
 
-  const shareUrl = "http://www.travelfy.com";
+  const shareUrl = `http://www.travelfy.com/trips/${trip._id}/places`;
 
   const placesFromTrip = async () => {
     const havePlaces = await getAllPlacesFromTrip(trip._id);
@@ -33,19 +33,23 @@ const TripCard = ({ trip }) => {
     }
   };
 
+  const handleDelete = () => {
+    deleteTrip(trip._id);
+    window.location.reload();
+  };
+
   useEffect(() => {
     placesFromTrip();
   }, []);
-
-  const handleDelete = () => {
-    deleteTrip(trip._id);
-  };
 
   return (
     <>
       <Card sx={{ maxWidth: 275 }} className="trip-card-wrapper">
         {places.length > 0 ? (
-          <Link to={`/trips/${trip._id}/places`} style={{ color: "inherit", textDecoration: 'none' }}>
+          <Link
+            to={`/trips/${trip._id}/places`}
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
             <CardHeader title={trip.title} />
             <CardMedia
               component="img"
@@ -72,7 +76,7 @@ const TripCard = ({ trip }) => {
           <div className="social-share-div">
             <TwitterShareButton
               url={shareUrl}
-              title={"Check this out! This is my travel list @Travelfy"}
+              title={`This is my travel list "${trip.title}" @Travelfy`}
             >
               <TwitterIcon size={29} round={true} />
             </TwitterShareButton>

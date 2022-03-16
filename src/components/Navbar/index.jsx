@@ -23,6 +23,8 @@ import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import LuggageIcon from "@mui/icons-material/Luggage";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
+import ClickAwayListener from '@mui/base/ClickAwayListener';
+
 
 const drawerWidth = 240;
 
@@ -104,7 +106,8 @@ export default function MiniDrawer() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <ClickAwayListener onClickAway={handleDrawerClose}>
+    <Box sx={{ display: "flex" }} onClose={((e)=>setOpen(false))}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -232,5 +235,6 @@ export default function MiniDrawer() {
         <DrawerHeader />
       </Box>
     </Box>
+    </ClickAwayListener>
   );
 }
