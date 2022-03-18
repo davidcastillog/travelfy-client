@@ -1,4 +1,6 @@
 import "./Home.css";
+import SearchBox from "../../components/SearchBox";
+
 
 export default function HomePage({user,...props}) {
 
@@ -7,7 +9,7 @@ export default function HomePage({user,...props}) {
       style={{ height: "70vh", width: "100%" }}
       className="home-div-container"
     >
-      <h1>HOME</h1>
+      <SearchBox/>
     </div>
   );
 }

@@ -2,45 +2,49 @@ import "./Explore.css";
 import { useState, useEffect } from "react";
 import { getPlaces } from "../../api/TravelAPI";
 import { PlacesList, Map, SearchBox, Filters } from "../../components";
-// TODO: import { useNavigate } from "react-router-dom";
-// TODO: import { getUserWS } from "../../services/authWs"; AUTHENTICATE USERS
-import { geoLocationData } from "../../api/GeoLocationAPI";
+import { getUserWS } from "../../services/authWs";
 // Material UI
 import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
-function Explore({user,...props}) {
-  // User location from IP
+function Explore({ props }) {
+
+  const [user, setUser] = useState(null);
   const [coordinates, setCoordinates] = useState({});
   // Map Limits (NorthEast and SouthWest)
   const [limits, setLimits] = useState();
   // Places list
   const [places, setPlaces] = useState([]);
-  console.log(places);
-  // Type of Place
+  console.log('PLACES',places);
+  // To use for filter places
   const [type, setType] = useState("attractions");
   const [rating, setRating] = useState(3);
   // Loading Control
   const [isLoading, setIsLoading] = useState(false);
   const [loadingPlaces, setLoadingPlaces] = useState(false);
 
-  // Get user coordinates from IP and set them as initial coordinates
-  const userGeoLocation = async () => {
+  const verifyUser = async () => {
+    const response = await getUserWS();
+    if (response.status) {
+      setUser(response.data.user);
+    }
+  };
+
+  const defaultGeoLocation = async () => {
     setIsLoading(true);
     try {
-      const res = await geoLocationData();
-      const { latitude: lat, longitude: lng } = res;
-      setCoordinates({ lat, lng });
+      const defaultCoords = { lat: 48.856614, lng: 2.3522219 }; // "Paris, France" as default
+      setCoordinates(defaultCoords);
       setIsLoading(false);
     } catch (error) {
       return error;
     }
   };
 
-  // Set initial coordinates and limits
   useEffect(() => {
-    userGeoLocation();
+    defaultGeoLocation();
+    verifyUser();
   }, []);
 
   // Get places from API
@@ -65,7 +69,7 @@ function Explore({user,...props}) {
           <Grid item xs={12} md={6} className="search-box-grid">
             <SearchBox setCoordinates={setCoordinates} />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} className="filter-explore-grid" sx={{ justifyContent: 'center' }}>
             <Filters
               type={type}
               setType={setType}
@@ -80,9 +84,13 @@ function Explore({user,...props}) {
           md={6}
           style={{ maxHeight: "80vh", overflow: "auto" }}
         >
-          <PlacesList loadingPlaces={loadingPlaces} places={places} user={user} />
+          <PlacesList
+            loadingPlaces={loadingPlaces}
+            places={places}
+            user={user}
+          />
         </Grid>
-        <Grid item xs={12} md={6} style={{ maxHeight: "100%" }}>
+        <Grid item xs={12} md={6} className="map-grid" style={{ maxHeight: "100%" }}>
           <Paper variant="outlined">
             {!isLoading && (
               <Map

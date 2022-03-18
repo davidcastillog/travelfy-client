@@ -9,7 +9,7 @@ function App() {
 
   const verifyUser = async () => {
     const response = await getUserWS();
-    if (response.statusCode === 200 || response.statusCode === 201) {
+    if (response) {
       setUser(response.data.user);
     }
   };

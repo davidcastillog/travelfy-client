@@ -43,6 +43,8 @@ const SavePlacePopUp = ({
       lat: place.latitude,
       lng: place.longitude,
       apiLocationId: place.location_id,
+      num_reviews: place.num_reviews,
+      ranking: place.ranking,
       _trip: tripId,
     };
 

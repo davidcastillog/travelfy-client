@@ -14,3 +14,5 @@ export { default as SavePlacePopUp } from "./SavePlacePopUp";
 export { default as NewTripPopUp } from './NewTripPopUp';
 export { default as TripCard } from './TripCard';
 export { default as AddTripCard } from './AddTripCard';
+export { default as WeatherCard } from './WeatherCard';
+export {default as WeatherCardIntro} from './WeatherCardIntro';

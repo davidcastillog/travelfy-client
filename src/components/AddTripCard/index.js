@@ -1,3 +1,4 @@
+import './AddTripCard.css'
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -15,7 +16,7 @@ const AddTripCard = () => {
           <CardMedia
             component="img"
             height="140"
-            image="https://bit.ly/3JsFXog"
+            image="https://bit.ly/3qgL8Au"
             alt="travel-default"
           />
           <CardContent>
@@ -24,7 +25,7 @@ const AddTripCard = () => {
             </Typography>
           </CardContent>
           <CardActions
-            className="new-trip-actions"
+            className="add-trip-actions"
             disableSpacing
             sx={{ alignItems: "center" }}
           >

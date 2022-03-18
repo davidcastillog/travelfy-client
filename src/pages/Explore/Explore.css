@@ -1,7 +1,12 @@
 .search-filter-grid{
     padding-top: 20px;
+    padding-right: 10px;
 }
 
 .search-box-wrapper{
     padding-left: 50px;
+}
+
+.map-grid{
+    padding-right: 5px;
 }

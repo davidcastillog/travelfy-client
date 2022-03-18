@@ -6,7 +6,7 @@ import PlaceCard from "../PlaceCard";
 import NoPlacesFound from "../NoPlacesFound";
 import Loader from "../Loader";
 
-const PlacesList = ({ places, loadingPlaces, user }) => {
+const PlacesList = ({ user, places, loadingPlaces, isSaved }) => {
   const [userTrips, setUserTrips] = useState([]);
 
   const getUserData = async () => {
@@ -23,13 +23,26 @@ const PlacesList = ({ places, loadingPlaces, user }) => {
   return (
     <>
       {loadingPlaces ? (
-        <> <Loader /> </>
+        <>
+          {" "}
+          <Loader />{" "}
+        </>
       ) : places.length > 0 ? (
-        <Grid container spacing={2}>
+        <Grid
+          container
+          spacing={2}
+          className="placecard-grid"
+          sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+        >
           {places?.map((place, i) => (
-            <Grid key={i} item xs={12}>
-              <PlaceCard place={place} user={user} userTrips={userTrips} setUserTrips={setUserTrips} />
-            </Grid>
+            <PlaceCard
+              place={place}
+              user={user}
+              userTrips={userTrips}
+              setUserTrips={setUserTrips}
+              isSaved={isSaved}
+              key={i}
+            />
           ))}
         </Grid>
       ) : (

@@ -15,7 +15,14 @@ import Stack from "@mui/material/Stack";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 
-const NewTripPopUp = ({ place, open, setOpen, tripId, setTripId, ...props }) => {
+const NewTripPopUp = ({
+  place,
+  open,
+  setOpen,
+  tripId,
+  setTripId,
+  ...props
+}) => {
   const [error, setError] = useState(null);
   const [tripName, setTripName] = useState("");
   const [isDisable, setIsDisable] = useState(false);
@@ -42,7 +49,7 @@ const NewTripPopUp = ({ place, open, setOpen, tripId, setTripId, ...props }) => 
         setTripId(response.data.trip._id);
         setIsDisable(true);
         setNotCreated(null);
-        props.updateTrip(response.data.trip)
+        props.updateTrip(response.data.trip);
       })
       .catch((error) => {
         setError(error);
@@ -72,7 +79,6 @@ const NewTripPopUp = ({ place, open, setOpen, tripId, setTripId, ...props }) => 
       .catch((error) => {
         setError(error);
       });
-
   };
 
   return (
@@ -108,9 +114,7 @@ const NewTripPopUp = ({ place, open, setOpen, tripId, setTripId, ...props }) => 
             </IconButton>
           </Stack>
           <Typography variant="body2" color="error">
-            {notCreated && (
-                <p>Please save the trip first (+)</p>
-            )}
+            {notCreated && <p>Please save the trip first (+)</p>}
           </Typography>
         </DialogContent>
         <DialogActions>

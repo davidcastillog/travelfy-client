@@ -2,59 +2,96 @@ import "./MyPlaces.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getOneTrip, getAllPlacesFromTrip } from "../../services/tripsWs";
+import { PlacesList, Map } from "../../components";
+import { getUserWS } from "../../services/authWs";
+import CssBaseline from "@mui/material/CssBaseline";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 
-function MyPlaces({ user, ...props }) {
+function MyPlaces({ props }) {
+  const [user, setUser] = useState(null);
+  // Map
+  const [coordinates, setCoordinates] = useState({});
+  console.log("COORDINATES", coordinates);
+  const [limits, setLimits] = useState();
+  console.log("LIMITS", limits);
+
+  // Places from trip
+  const [places, setPlaces] = useState([]);
+  console.log(places);
+  const [loadingPlaces, setLoadingPlaces] = useState(false);
+
+  // Trip Details
+  const [trip, setTrip] = useState({});
+
+  // Loading Control
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+
   const { id } = useParams();
 
-  const [places, setPlaces] = useState([]);
-  const [trip, setTrip] = useState({});
-  const [isloading, setIsLoading] = useState(true);
-
-  console.log("TRIP", trip);
-  console.log("PLACES", places);
+  const verifyUser = async () => {
+    const response = await getUserWS();
+    if (response.status) {
+      setUser(response.data.user);
+    }
+  };
 
   const getTripAndPlaces = async () => {
-    const trip = await getOneTrip(id);
-    const placesInTrip = await getAllPlacesFromTrip(id);
-    if (placesInTrip) {
-      setPlaces(placesInTrip.data.places);
+    setIsLoading(true);
+    try {
+      const trip = await getOneTrip(id); // For use it as title
+      if (trip) {
+        setTrip(trip.data.trip);
+      }
+      const placesInTrip = await getAllPlacesFromTrip(id); // For use it as places
+      if (placesInTrip) {
+        setPlaces(placesInTrip.data.places);
+        setIsLoading(false);
+        setIsSaved(true); // To display delete button in place card
+      }
       setIsLoading(false);
-    }
-    if (trip) {
-      setTrip(trip.data.trip);
-      setIsLoading(false);
+    } catch (error) {
+      return error;
     }
   };
 
   useEffect(() => {
     getTripAndPlaces();
+    verifyUser();
   }, []);
 
   return (
-    <div className="MyPlaces">
-      <h1>{trip.title}</h1>
-      <p>{trip.description}</p>
-      <div className="places-container">
-        {!isloading && places.length > 0 ? (
-          places.map((place, i) => (
-            <div key={i}>
-              <h2>{place.name}</h2>
-              <p>{place.rating}</p>
-              <div className="place-img-container">
-                {/* Map images */}
-                {place.placeImages.map((image, i) => (
-                  <img key={i} src={image} alt="place" />
-                ))}
-              </div>
-            </div>
-          ))
-        ) : (
-          <>
-            <p>No places added yet</p>
-          </>
-        )}
-      </div>
-    </div>
+    <>
+      <CssBaseline />
+      <Grid container spacing={2} className="myplaces-grid">
+        <Grid
+          item
+          xs={12}
+          md={6}
+          style={{ maxHeight: "80vh", overflow: "auto" }}
+        >
+          <PlacesList
+            loadingPlaces={loadingPlaces}
+            places={places}
+            user={user}
+            isSaved={isSaved}
+          />
+        </Grid>
+        <Grid item xs={12} md={6} style={{ maxHeight: "100%" }}>
+          <Paper variant="outlined">
+            {/* {!isLoading && (
+              <Map
+                coordinates={coordinates}
+                setLimits={setLimits}
+                setCoordinates={setCoordinates}
+                places={places}
+              />
+            )} */}
+          </Paper>
+        </Grid>
+      </Grid>
+    </>
   );
 }
 

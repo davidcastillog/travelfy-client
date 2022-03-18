@@ -1,3 +1,13 @@
-.place-card{
-    padding: 20px;
+.placecard-actions {
+  justify-content: center !important;
+  background-color: rgb(242, 242, 242);
+}
+
+.placecard-wrapper {
+  margin: 5px;
+}
+
+.css-1qvr50w-MuiTypography-root {
+  font-size: 1.3rem !important;
+  line-height: 1;
 }

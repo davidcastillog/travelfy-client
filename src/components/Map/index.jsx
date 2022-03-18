@@ -7,7 +7,7 @@ const Map = ({ places, coordinates, setCoordinates, setLimits }) => {
     <>
       <div className="map-wrapper">
         <GoogleMapReact
-          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY }}
+          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY, libraries:['places','geometry','drawing'] }}
           // Map Style (Google Developers Plattaform)
           mapId={process.env.REACT_MAP_GOOGLE_MAP_ID}
           center={coordinates}

@@ -6,8 +6,17 @@ import { Rating } from "@mui/material";
 
 const PlaceMarker = ({ place }) => {
   return (
-      <div className="place-wrapper">
-        <Paper elevation={2}>
+    <div className="place-wrapper">
+      <LocationOnIcon color="error" fontSize="large" />
+      <Paper
+        elevation={2}
+        sx={{
+          position: "absolute",
+          transform: "translate(10%, -155%)",
+          zIndex: 1,
+          "&:hover": { zIndex: 2 },
+        }}
+      >
         <Typography variant="subtitle2" gutterBottom>
           {place.name}
         </Typography>
@@ -19,8 +28,7 @@ const PlaceMarker = ({ place }) => {
           readOnly
         />
       </Paper>
-      <LocationOnIcon color="error" fontSize="large" />
-      </div>
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ import "./AroundMe.css";
 import { useState, useEffect } from "react";
 import { getPlaces } from "../../api/TravelAPI";
 import { PlacesList, Map, SearchBox, Filters } from "../../components";
-// TODO: import { getUserWS } from "../../services/authWs"; AUTHENTICATE USERS
+import { getUserWS } from "../../services/authWs";
 import { geoLocationData } from "../../api/GeoLocationAPI";
 // Material UI
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 function AroundMe(props) {
+  const [user, setUser] = useState(null);
   // User location from IP
   const [coordinates, setCoordinates] = useState({});
   const [userLoc, setUserLoc] = useState({});
@@ -40,9 +41,17 @@ function AroundMe(props) {
     }
   };
 
+  const verifyUser = async () => {
+    const response = await getUserWS();
+    if (response.status) {
+      setUser(response.data.user);
+    }
+  };
+
   // Set initial coordinates and limits
   useEffect(() => {
     userGeoLocation();
+    verifyUser();
   }, []);
 
   // Get places from API
@@ -98,9 +107,9 @@ function AroundMe(props) {
           md={6}
           style={{ maxHeight: "80vh", overflow: "auto" }}
         >
-          <PlacesList loadingPlaces={loadingPlaces} places={places} user={props.user}/>
+          <PlacesList loadingPlaces={loadingPlaces} places={places} user={user}/>
         </Grid>
-        <Grid item xs={12} md={6} style={{ maxHeight: "100%" }}>
+        <Grid item xs={12} md={6} className="map-grid" style={{ maxHeight: "100%" }}>
           <Paper variant="outlined">
             {!isLoading && (
               <Map

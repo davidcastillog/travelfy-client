@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { getUserWS } from "../../services/authWs";
 import Container from "@mui/material/Container";
 
-function MyTrips({ user, ...props }) {
+function MyTrips({ props }) {
+  const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [userTrips, setUserTrips] = useState([]);
 
@@ -17,6 +18,8 @@ function MyTrips({ user, ...props }) {
     const response = await getUserWS();
     if (!response.status) {
       navigate("/login");
+    } else {
+      setUser(response.data.user);
     }
   };
 
@@ -33,7 +36,7 @@ function MyTrips({ user, ...props }) {
     verifyUser();
     findUserTrips();
   }, []);
-  
+
   return (
     <>
       <Container

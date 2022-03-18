@@ -16,7 +16,7 @@ export default function Auth(props) {
   const isAuthenticated = () => {
     getUserWS().then((response) => {
       if (response.status) {
-        navigate("/");
+        navigate("/mytrips");
       }
     });
   };
