@@ -2,6 +2,8 @@ import * as React from "react";
 import TravelfyLogo from "../../images/travelfy-logo-small.png";
 import { Link } from "react-router-dom";
 import { styled, useTheme } from "@mui/material/styles";
+import { logoutWS } from "../../services/authWs";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
@@ -24,12 +26,11 @@ import LuggageIcon from "@mui/icons-material/Luggage";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import ClickAwayListener from "@mui/base/ClickAwayListener";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import Avatar from '@mui/material/Avatar';
-
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import Avatar from "@mui/material/Avatar";
 
 const drawerWidth = 240;
 
@@ -62,8 +63,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
-
-const settings = ['Profile', 'Change Password', 'Logout'];
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -100,14 +99,13 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer({user,...props}) {
-  console.log('PROPS NAVBAR', user);
-
+export default function MiniDrawer({ user, ...props }) {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  console.log('anchorElUser', anchorElUser);
+  const [open, setOpen] = React.useState(false);
 
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+
+  const navigate = useNavigate();
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -123,6 +121,13 @@ export default function MiniDrawer({user,...props}) {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleLogout = () => {
+    logoutWS();
+    props.authenticate();
+    setAnchorElUser(null);
+    navigate("/login");
   };
 
   return (
@@ -163,42 +168,57 @@ export default function MiniDrawer({user,...props}) {
               </div>
             </Typography>
             <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              mt: 0.5,
-              mr: 1,
-            }}
-            className="user-menu-appbar">
-            <Tooltip title="Open Menu">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Travelfy User" src="https://bit.ly/3tlE1bC" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                mt: 0.5,
+                mr: 1,
               }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+              className="user-menu-appbar"
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              <Tooltip title="Open Menu">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Travelfy User" src="https://bit.ly/3tlE1bC" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem
+                  component={Link}
+                  to={"/profile"}
+                  onClick={handleCloseUserMenu}
+                >
+                  <Typography textAlign="center">Profile</Typography>
                 </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+                <MenuItem
+                  component={Link}
+                  to={"/changepassword"}
+                  onClick={handleCloseUserMenu}
+                >
+                  <Typography to="/changepassword" textAlign="center">
+                    Change Password
+                  </Typography>
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>

@@ -6,6 +6,7 @@ export { default as NavBar } from "./Navbar";
 export { default as Filters } from "./Filters";
 export { default as TripCard } from "./TripCard";
 export { default as SearchBox } from "./SearchBox";
+export {default as ProfileCard} from './ProfileCard'
 export { default as GoogleLOut } from "./GoogleLOut";
 export { default as PlacesList } from "./PlacesList";
 export { default as NewTripForm } from "./NewTripForm";
@@ -18,3 +19,4 @@ export { default as GoogleSignIn } from "./GoogleSignIn";
 export { default as NoPlacesFound } from "./NoPlacesFound";
 export { default as SavePlacePopUp } from "./SavePlacePopUp";
 export { default as WeatherCardIntro } from "./WeatherCardIntro";
+export {default as ChangePasswordForm} from './ChangePasswordForm';

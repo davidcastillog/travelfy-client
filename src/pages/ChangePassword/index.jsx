@@ -1,11 +1,10 @@
-import "./Profile.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserWS } from "../../services/authWs";
-import { ProfileCard } from "../../components";
+import { ChangePasswordForm } from "../../components";
 import Grid from "@mui/material/Grid";
 
-const Profile = ({ props }) => {
+const ChangePassword = ({ props }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -32,7 +31,7 @@ const Profile = ({ props }) => {
       {!isLoading && (
         <>
           <Grid container spacing={2} sx={{ justifyContent: "center" }}>
-            <ProfileCard user={user} />
+            <ChangePasswordForm user={user} />
           </Grid>
         </>
       )}
@@ -40,4 +39,4 @@ const Profile = ({ props }) => {
   );
 };
 
-export default Profile;
+export default ChangePassword;

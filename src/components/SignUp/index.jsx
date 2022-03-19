@@ -42,7 +42,7 @@ const SignUp = () => {
     signUpWS(data)
       .then((response) => {
         if (response.status) {
-          navigate("/");
+          navigate("/mytrips");
         } else {
           setError(response.errorMessage);
         }

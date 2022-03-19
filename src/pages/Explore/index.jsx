@@ -81,7 +81,7 @@ function Explore({ props }) {
           item
           xs={12}
           md={6}
-          style={{ maxHeight: "80vh", overflow: "auto" }}
+          style={{ maxHeight: "80vh", overflow: "auto"}}
         >
           <PlacesList
             loadingPlaces={loadingPlaces}

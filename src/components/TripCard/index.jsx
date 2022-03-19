@@ -24,7 +24,7 @@ import EditIcon from "@mui/icons-material/Edit";
 const TripCard = ({ trip }) => {
   const [places, setPlaces] = useState([]);
 
-  const shareUrl = `http://www.travelfy.com/trips/${trip._id}/places`;
+  const shareUrl = `http://www.travelfy.com/trips/share/${trip._id}/places`;
 
   const placesFromTrip = async () => {
     const havePlaces = await getAllPlacesFromTrip(trip._id);
@@ -74,6 +74,9 @@ const TripCard = ({ trip }) => {
             {trip.description}
           </Typography>
           <div className="social-share-div">
+          <Typography variant="subtitle2" color="text.secondary">
+            Share on:
+          </Typography>
             <TwitterShareButton
               url={shareUrl}
               title={`This is my travel list "${trip.title}" @Travelfy`}

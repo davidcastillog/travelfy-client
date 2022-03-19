@@ -41,7 +41,7 @@ const Login = () => {
 
       const { data, status, errorMessage } = await loginWS(credentials);
       if (status) {
-        navigate("/");
+        navigate("/mytrips");
         return data;
       } else {
         setError(errorMessage);

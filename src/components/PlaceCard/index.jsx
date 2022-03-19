@@ -1,5 +1,6 @@
 import "./PlaceCard.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import { deletePlace } from "../../services/placesWs";
 import NewTripPopUp from "../NewTripPopUp";
 import SavePlacePopUp from "../SavePlacePopUp";
@@ -22,6 +23,17 @@ const PlaceCard = ({ place, userTrips, setUserTrips, user, isSaved }) => {
   const [open, setOpen] = useState(false);
   const [tripId, setTripId] = useState("");
 
+  // To Share on Social Media
+  const [toShare, setToShare] = useState(false);
+
+  const location = useLocation();
+  const { id } = useParams();
+  const isToShare = location.pathname === `/trips/share/${id}/places`;
+
+  const isToShareOnSocial = () => {
+    isToShare ? setToShare(true) : setToShare(null);
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -31,9 +43,17 @@ const PlaceCard = ({ place, userTrips, setUserTrips, user, isSaved }) => {
     window.location.reload();
   };
 
+  useEffect(() => {
+    isToShareOnSocial();
+  });
+
   return (
     <>
-      <Card sx={{ width: 290, alignSelf: 'flex-start' }} elevation={3} className="placecard-wrapper">
+      <Card
+        sx={{ width: 290, alignSelf: "flex-start" }}
+        elevation={3}
+        className="placecard-wrapper"
+      >
         <CardHeader title={place.name} className="card-header" />
         {isSaved ? (
           <CardMedia
@@ -44,7 +64,11 @@ const PlaceCard = ({ place, userTrips, setUserTrips, user, isSaved }) => {
         ) : (
           <CardMedia
             style={{ height: 250 }}
-            image={place.photo ? place.photo.images.large.url : "https://bit.ly/3IrhUVA"}
+            image={
+              place.photo
+                ? place.photo.images.large.url
+                : "https://bit.ly/3IrhUVA"
+            }
             title={place.name}
           />
         )}
@@ -62,9 +86,7 @@ const PlaceCard = ({ place, userTrips, setUserTrips, user, isSaved }) => {
             </Typography>
           </Box>
           <Divider />
-          <Typography variant="caption">
-            {place.ranking}
-          </Typography>
+          <Typography variant="caption">{place.ranking}</Typography>
           {place.price_level && (
             <div>
               <Typography variant="overline">
@@ -91,56 +113,62 @@ const PlaceCard = ({ place, userTrips, setUserTrips, user, isSaved }) => {
             <></>
           )}
         </CardContent>
-        <CardActions className="placecard-actions">
-          {user ? (
-            <>
-              {isSaved ? (
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                  }}
-                >
-                  <IconButton aria-label="delete" onClick={handleDeletePlace}>
-                    <DeleteIcon />
-                  </IconButton>
-                </Box>
-              ) : (
-                <>
-                  <Button onClick={handleClickOpen} variant="outlined">
-                    SAVE
-                  </Button>
-                  {userTrips.length > 0 ? (
-                    <SavePlacePopUp
-                      open={open}
-                      tripId={tripId}
-                      place={place}
-                      setOpen={setOpen}
-                      setTripId={setTripId}
-                      userTrips={userTrips}
-                    />
-                  ) : (
-                    <NewTripPopUp
-                      open={open}
-                      tripId={tripId}
-                      place={place}
-                      setOpen={setOpen}
-                      setTripId={setTripId}
-                      userTrips={userTrips}
-                      updateTrip={(trip) => setUserTrips([...userTrips, trip])}
-                    />
-                  )}
-                </>
-              )}
-            </>
-          ) : (
-            <>
-              <Button variant="outlined" size="small" href="/login">
-                Login to Save
-              </Button>
-            </>
-          )}
-        </CardActions>
+        {toShare ? (
+          <></>
+        ) : (
+          <CardActions className="placecard-actions">
+            {user ? (
+              <>
+                {isSaved ? (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    <IconButton aria-label="delete" onClick={handleDeletePlace}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </Box>
+                ) : (
+                  <>
+                    <Button onClick={handleClickOpen} variant="outlined">
+                      SAVE
+                    </Button>
+                    {userTrips.length > 0 ? (
+                      <SavePlacePopUp
+                        open={open}
+                        tripId={tripId}
+                        place={place}
+                        setOpen={setOpen}
+                        setTripId={setTripId}
+                        userTrips={userTrips}
+                      />
+                    ) : (
+                      <NewTripPopUp
+                        open={open}
+                        tripId={tripId}
+                        place={place}
+                        setOpen={setOpen}
+                        setTripId={setTripId}
+                        userTrips={userTrips}
+                        updateTrip={(trip) =>
+                          setUserTrips([...userTrips, trip])
+                        }
+                      />
+                    )}
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                <Button variant="outlined" size="small" href="/login">
+                  Login to Save
+                </Button>
+              </>
+            )}
+          </CardActions>
+        )}
       </Card>
     </>
   );

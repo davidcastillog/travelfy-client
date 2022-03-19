@@ -1,5 +1,5 @@
 import "./MyPlaces.css";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getOneTrip, getAllPlacesFromTrip } from "../../services/tripsWs";
 import { PlacesList, MapPlaces } from "../../components";

@@ -39,7 +39,7 @@ export const updateUserWS = async (data) => {
 
 export const logoutWS = async () => {
   try {
-    const res = await apiServer.get('/auth/logout');
+    const res = await apiServer.post('/auth/logout');
     return successStatus(res);
   } catch (error) {
     return internalServerError(error);
