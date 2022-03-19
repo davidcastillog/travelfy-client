@@ -2,7 +2,7 @@ import "./MyPlaces.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getOneTrip, getAllPlacesFromTrip } from "../../services/tripsWs";
-import { PlacesList, Map } from "../../components";
+import { PlacesList, MapPlaces } from "../../components";
 import { getUserWS } from "../../services/authWs";
 import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
@@ -12,18 +12,11 @@ function MyPlaces({ props }) {
   const [user, setUser] = useState(null);
   // Map
   const [coordinates, setCoordinates] = useState({});
-  console.log("COORDINATES", coordinates);
-  const [limits, setLimits] = useState();
-  console.log("LIMITS", limits);
-
   // Places from trip
   const [places, setPlaces] = useState([]);
-  console.log(places);
   const [loadingPlaces, setLoadingPlaces] = useState(false);
-
   // Trip Details
   const [trip, setTrip] = useState({});
-
   // Loading Control
   const [isLoading, setIsLoading] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
@@ -39,6 +32,7 @@ function MyPlaces({ props }) {
 
   const getTripAndPlaces = async () => {
     setIsLoading(true);
+    setLoadingPlaces(true);
     try {
       const trip = await getOneTrip(id); // For use it as title
       if (trip) {
@@ -47,10 +41,15 @@ function MyPlaces({ props }) {
       const placesInTrip = await getAllPlacesFromTrip(id); // For use it as places
       if (placesInTrip) {
         setPlaces(placesInTrip.data.places);
+        setCoordinates({
+          lat: placesInTrip.data.places[0].lat,
+          lng: placesInTrip.data.places[0].lng,
+        });
         setIsLoading(false);
         setIsSaved(true); // To display delete button in place card
       }
       setIsLoading(false);
+      setLoadingPlaces(false);
     } catch (error) {
       return error;
     }
@@ -80,14 +79,9 @@ function MyPlaces({ props }) {
         </Grid>
         <Grid item xs={12} md={6} style={{ maxHeight: "100%" }}>
           <Paper variant="outlined">
-            {/* {!isLoading && (
-              <Map
-                coordinates={coordinates}
-                setLimits={setLimits}
-                setCoordinates={setCoordinates}
-                places={places}
-              />
-            )} */}
+            {!isLoading && (
+              <MapPlaces coordinates={coordinates} places={places} zoom={12} />
+            )}
           </Paper>
         </Grid>
       </Grid>

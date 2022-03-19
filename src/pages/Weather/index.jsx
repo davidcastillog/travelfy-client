@@ -3,13 +3,11 @@ import { useState, useEffect } from "react";
 import { getWeather } from "../../api/WeatherAPI";
 import { SearchBox, WeatherCard, WeatherCardIntro } from "../../components";
 import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 const Weather = ({ user, ...props }) => {
   const [coordinates, setCoordinates] = useState({});
   const [weather, setWeather] = useState([]);
-  console.log("WEATHER", weather);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 

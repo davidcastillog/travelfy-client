@@ -23,7 +23,12 @@ import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import LuggageIcon from "@mui/icons-material/Luggage";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
-import ClickAwayListener from '@mui/base/ClickAwayListener';
+import ClickAwayListener from "@mui/base/ClickAwayListener";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import Avatar from '@mui/material/Avatar';
 
 
 const drawerWidth = 240;
@@ -57,6 +62,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
+
+const settings = ['Profile', 'Change Password', 'Logout'];
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -93,9 +100,22 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer() {
+export default function MiniDrawer({user,...props}) {
+  console.log('PROPS NAVBAR', user);
+
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  console.log('anchorElUser', anchorElUser);
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -107,134 +127,183 @@ export default function MiniDrawer() {
 
   return (
     <ClickAwayListener onClickAway={handleDrawerClose}>
-    <Box sx={{ display: "flex" }} onClose={((e)=>setOpen(false))}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
+      <Box sx={{ display: "flex" }} onClose={(e) => setOpen(false)}>
+        <CssBaseline />
+        <AppBar position="fixed" open={open}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{
+                marginRight: 5,
+                ...(open && { display: "none" }),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              variant="h6"
+              className="travelfy-logo-wrapper"
+              noWrap
+              component="div"
+              sx={{
+                flexGrow: 1,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                mt: 1,
+              }}
+            >
+              <div className="travelfy-logo">
+                <Link to="/">
+                  <img src={TravelfyLogo} alt="travelfy-logo" />
+                </Link>
+              </div>
+            </Typography>
+            <Box
             sx={{
-              marginRight: 5,
-              ...(open && { display: "none" }),
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              mt: 0.5,
+              mr: 1,
             }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            className="travelfy-logo-wrapper"
-            noWrap
-            component="div"
-            sx={{
-              mr: 2,
-              display: {
-                md: "flex",
-                margin: 'auto',
-                position: "absolute",
-                left: "45%",
-                top: "20%",
-                maxWidth: '50%',
-              },
-            }}
-          >
-            <div className="travelfy-logo">
-              <Link to="/">
-                <img src={TravelfyLogo} alt="travelfy-logo" />
-              </Link>
-            </div>
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          <ListItem
-            disablePadding
-            style={{ color: "inherit" }}
-            component={Link}
-            to={"/"}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem
-            disablePadding
-            style={{ color: "inherit" }}
-            component={Link}
-            to={"/explore"}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <TravelExploreIcon />
-              </ListItemIcon>
-              <ListItemText primary="Explore" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem
-            disablePadding
-            style={{ color: "inherit" }}
-            component={Link}
-            to={"/aroundme"}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <PersonPinIcon />
-              </ListItemIcon>
-              <ListItemText primary="Around Me" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem
-            disablePadding
-            style={{ color: "inherit" }}
-            component={Link}
-            to={"/weather"}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <WbSunnyIcon />
-              </ListItemIcon>
-              <ListItemText primary="Weather" />
-            </ListItemButton>
-          </ListItem>
-        </List>
-        <Divider />
-        <List>
-          <ListItem
-            disablePadding
-            className="menu-font-tvf"
-            style={{ color: "inherit" }}
-            component={Link}
-            to={"/mytrips"}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <LuggageIcon />
-              </ListItemIcon>
-              <ListItemText primary="My Trips" />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
+            className="user-menu-appbar">
+            <Tooltip title="Open Menu">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Travelfy User" src="https://bit.ly/3tlE1bC" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          </Toolbar>
+        </AppBar>
+        <Drawer variant="permanent" open={open}>
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "rtl" ? (
+                <ChevronRightIcon />
+              ) : (
+                <ChevronLeftIcon />
+              )}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <List>
+            <ListItem
+              disablePadding
+              style={{ color: "inherit" }}
+              component={Link}
+              to={"/"}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  <HomeIcon />
+                </ListItemIcon>
+                <ListItemText primary="Home" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem
+              disablePadding
+              style={{ color: "inherit" }}
+              component={Link}
+              to={"/explore"}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  <TravelExploreIcon />
+                </ListItemIcon>
+                <ListItemText primary="Explore" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem
+              disablePadding
+              style={{ color: "inherit" }}
+              component={Link}
+              to={"/aroundme"}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  <PersonPinIcon />
+                </ListItemIcon>
+                <ListItemText primary="Around Me" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem
+              disablePadding
+              style={{ color: "inherit" }}
+              component={Link}
+              to={"/weather"}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  <WbSunnyIcon />
+                </ListItemIcon>
+                <ListItemText primary="Weather" />
+              </ListItemButton>
+            </ListItem>
+          </List>
+          <Divider />
+          <List>
+            <ListItem
+              disablePadding
+              className="menu-font-tvf"
+              style={{ color: "inherit" }}
+              component={Link}
+              to={"/mytrips"}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  <LuggageIcon />
+                </ListItemIcon>
+                <ListItemText primary="My Trips" />
+              </ListItemButton>
+            </ListItem>
+          </List>
+          <List>
+            <ListItem
+              disablePadding
+              className="menu-font-tvf"
+              style={{ color: "inherit" }}
+              component={Link}
+              to={"/profile"}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  <AccountCircleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Profile" />
+              </ListItemButton>
+            </ListItem>
+          </List>
+        </Drawer>
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <DrawerHeader />
+        </Box>
       </Box>
-    </Box>
     </ClickAwayListener>
   );
 }

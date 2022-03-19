@@ -28,6 +28,15 @@ export const changePasswordWS = async (data) => {
   }
 };
 
+export const updateUserWS = async (data) => {
+  try {
+    const res = await apiServer.post('/auth/update', data);
+    return successStatus(res);
+  } catch (error) {
+    return internalServerError(error);
+  }
+};
+
 export const logoutWS = async () => {
   try {
     const res = await apiServer.get('/auth/logout');

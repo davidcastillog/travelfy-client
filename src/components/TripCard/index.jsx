@@ -78,19 +78,19 @@ const TripCard = ({ trip }) => {
               url={shareUrl}
               title={`This is my travel list "${trip.title}" @Travelfy`}
             >
-              <TwitterIcon size={29} round={true} />
+              <TwitterIcon size={29} round={true}/>
             </TwitterShareButton>
             <FacebookShareButton
               url={shareUrl}
-              quote={"Check this out! This is my travel list @Travelfy"}
+              quote={`This is my travel list "${trip.title}" @Travelfy`}
             >
-              <FacebookIcon size={29} round={true} />
+              <FacebookIcon size={29} round={true}/>
             </FacebookShareButton>
             <WhatsappShareButton
               url={shareUrl}
-              title={"Check this out! This is my travel list @Travelfy"}
+              title={`This is my travel list "${trip.title}" @Travelfy`}
             >
-              <WhatsappIcon size={29} round={true} />
+              <WhatsappIcon size={29} round={true} m={1}  />
             </WhatsappShareButton>
           </div>
         </CardContent>

@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar {...{ user, authenticate, handleLogout }} />
       <RootNavigation {...{ user, authenticate, handleLogout }} />
     </div>
   );

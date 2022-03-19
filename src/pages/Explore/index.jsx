@@ -16,7 +16,6 @@ function Explore({ props }) {
   const [limits, setLimits] = useState();
   // Places list
   const [places, setPlaces] = useState([]);
-  console.log('PLACES',places);
   // To use for filter places
   const [type, setType] = useState("attractions");
   const [rating, setRating] = useState(3);
@@ -98,6 +97,7 @@ function Explore({ props }) {
                 setLimits={setLimits}
                 setCoordinates={setCoordinates}
                 places={places}
+                zoom={14}
               />
             )}
           </Paper>

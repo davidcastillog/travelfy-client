@@ -1,6 +1,7 @@
 import "./SavePlacePopUp.css";
 import { useState } from "react";
 import { createPlace } from "../../services/placesWs";
+import { createTrip } from "../../services/tripsWs";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -13,6 +14,14 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import Stack from "@mui/material/Stack";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
+import LuggageIcon from "@mui/icons-material/Luggage";
+import IconButton from "@mui/material/IconButton";
 
 const SavePlacePopUp = ({
   place,
@@ -23,7 +32,30 @@ const SavePlacePopUp = ({
   userTrips,
 }) => {
   const [error, setError] = useState(null);
+  const [notCreated, setNotCreated] = useState(null);
+  const [tripName, setTripName] = useState("");
+  const [isDisable, setIsDisable] = useState(false);
 
+  const handleChangeNewTrip = (event) => {
+    const { value } = event.target;
+    setTripName(value);
+  };
+
+  const newTripSavePlace = async () => {
+    const newTrip = {
+      title: tripName,
+    };
+
+    createTrip(newTrip)
+      .then((response) => {
+        setTripId(response.data.trip._id);
+        setIsDisable(true);
+        setNotCreated(null);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  };
   const handleChange = (event) => {
     setTripId(event.target.value);
   };
@@ -61,9 +93,59 @@ const SavePlacePopUp = ({
   return (
     <>
       <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
-        <DialogTitle>Select your Trip</DialogTitle>
+        <Box
+          component="form"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <DialogTitle sx={{ textAlign: "center" }}>
+            Create a new Trip
+          </DialogTitle>
+          <DialogContent>
+            <Stack direction="row" spacing={1}>
+              <FormControl sx={{ m: 1, minWidth: 120 }}>
+                <TextField
+                  id="outlined-basic"
+                  name="title"
+                  value={tripName}
+                  disabled={isDisable}
+                  onChange={handleChangeNewTrip}
+                  label="Create Trip"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <LuggageIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                  variant="outlined"
+                />
+              </FormControl>
+              <IconButton
+                aria-label="add"
+                color="primary"
+                onClick={newTripSavePlace}
+              >
+                <AddCircleIcon />
+              </IconButton>
+            </Stack>
+            <Typography variant="body2" color="error">
+              {notCreated && <p>Please save the trip first (+)</p>}
+            </Typography>
+          </DialogContent>
+        </Box>
+        <Divider>
+          <Chip label="OR" />
+        </Divider>
+        <DialogTitle sx={{ textAlign: "center" }}>Select your Trip</DialogTitle>
         <DialogContent>
-          <Box component="form" sx={{ display: "flex", flexWrap: "wrap" }}>
+          <Box
+            component="form"
+            sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+          >
             <FormControl sx={{ m: 1, minWidth: 120 }}>
               <InputLabel id="demo-dialog-select-label">Trip</InputLabel>
               <Select
@@ -83,9 +165,7 @@ const SavePlacePopUp = ({
             </FormControl>
           </Box>
           <Typography variant="body2" color="error">
-            {error && (
-                <p>{error.errorMessage}</p>
-            )}
+            {error && <p>{error.errorMessage}</p>}
           </Typography>
         </DialogContent>
         <DialogActions>

@@ -2,7 +2,7 @@ import "./Map.css";
 import GoogleMapReact from "google-map-react";
 import PlaceMarker from "../PlaceMarker";
 
-const Map = ({ places, coordinates, setCoordinates, setLimits, zoom }) => {
+const MapPlaces = ({ places, coordinates, setCoordinates, setLimits, zoom }) => {
   return (
     <>
       <div className="map-wrapper">
@@ -13,10 +13,6 @@ const Map = ({ places, coordinates, setCoordinates, setLimits, zoom }) => {
           center={coordinates}
           defaultZoom={zoom}
           options={{ disableDefaultUI: true, zoomControl: true }}
-          onChange={(e) => {
-            setCoordinates({ lat: e.center.lat, lng: e.center.lng });
-            setLimits({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
-          }}
         >
           {places.map((place, i) => (
             <PlaceMarker
@@ -32,4 +28,4 @@ const Map = ({ places, coordinates, setCoordinates, setLimits, zoom }) => {
   );
 };
 
-export default Map;
+export default MapPlaces;

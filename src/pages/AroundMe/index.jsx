@@ -117,6 +117,7 @@ function AroundMe(props) {
                 setLimits={setLimits}
                 setCoordinates={setCoordinates}
                 places={places}
+                zoom={14}
               />
             )}
           </Paper>
