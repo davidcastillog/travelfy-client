@@ -18,5 +18,6 @@ export { default as NewTripPopUp } from "./NewTripPopUp";
 export { default as GoogleSignIn } from "./GoogleSignIn";
 export { default as NoPlacesFound } from "./NoPlacesFound";
 export { default as SavePlacePopUp } from "./SavePlacePopUp";
+export { default as DestinationCard } from "./DestinationCard";
 export { default as WeatherCardIntro } from "./WeatherCardIntro";
 export {default as ChangePasswordForm} from './ChangePasswordForm';

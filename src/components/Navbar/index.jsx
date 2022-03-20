@@ -1,5 +1,5 @@
 import * as React from "react";
-import TravelfyLogo from "../../images/travelfy-logo-small.png";
+import TravelfyLogo from "../../assets/images/travelfy-logo-small.png";
 import { Link } from "react-router-dom";
 import { styled, useTheme } from "@mui/material/styles";
 import { logoutWS } from "../../services/authWs";

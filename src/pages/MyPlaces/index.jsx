@@ -1,5 +1,5 @@
 import "./MyPlaces.css";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getOneTrip, getAllPlacesFromTrip } from "../../services/tripsWs";
 import { PlacesList, MapPlaces } from "../../components";
@@ -22,6 +22,8 @@ function MyPlaces({ props }) {
   const [isSaved, setIsSaved] = useState(false);
 
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const verifyUser = async () => {
     const response = await getUserWS();
@@ -47,6 +49,8 @@ function MyPlaces({ props }) {
         });
         setIsLoading(false);
         setIsSaved(true); // To display delete button in place card
+      } else {
+        navigate("/mytrips")
       }
       setIsLoading(false);
       setLoadingPlaces(false);

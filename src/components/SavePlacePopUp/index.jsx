@@ -70,7 +70,7 @@ const SavePlacePopUp = ({
     const newPlace = {
       name: place.name,
       placeImages: place.photo.images.large.url,
-      address: place.address_obj.street1,
+      address: place.address_obj.street1, // TODO: SKIP FOR HOTELS
       rating: place.rating,
       lat: place.latitude,
       lng: place.longitude,

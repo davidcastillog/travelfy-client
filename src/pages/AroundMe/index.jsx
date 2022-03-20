@@ -1,7 +1,7 @@
 import "./AroundMe.css";
 import { useState, useEffect } from "react";
 import { getPlaces } from "../../api/TravelAPI";
-import { PlacesList, Map, SearchBox, Filters } from "../../components";
+import { PlacesList, Map, Filters } from "../../components";
 import { getUserWS } from "../../services/authWs";
 import { geoLocationData } from "../../api/GeoLocationAPI";
 // Material UI

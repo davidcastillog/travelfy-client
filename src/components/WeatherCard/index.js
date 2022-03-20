@@ -12,7 +12,7 @@ import ModeNightIcon from "@mui/icons-material/ModeNight";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import WaterIcon from "@mui/icons-material/Water";
 
-const WeatherCard = ({ day }) => {
+const WeatherCard = ({ day, i }) => {
   const [dateOfDay, setDateOfDay] = useState(day.date);
 
   const formatDate = () => {
@@ -31,7 +31,7 @@ const WeatherCard = ({ day }) => {
 
   return (
     <>
-      <Card sx={{ width: 215, maxWidth: 215, m: 0.5, my:1 }} elevation={3}>
+      <Card sx={{ width: 215, maxWidth: 215, maxHeight: 315, m: 0.5, my:1 }} elevation={3}>
         <CardContent>
           <Typography gutterBottom variant="subtitle2" component="div">
             {dateOfDay}

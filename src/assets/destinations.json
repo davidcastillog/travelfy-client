@@ -1,0 +1,122 @@
+[
+  {
+    "city": "Paris, France",
+    "lat": 48.856614,
+    "lng": 2.3522219,
+    "image": ""
+  },
+  {
+    "city": "New York, USA",
+    "lat": 40.7127753,
+    "lng": -74.0059728,
+    "image": ""
+  },
+  {
+    "city": "Madrid, Spain",
+    "lat": 40.4167754,
+    "lng": -3.7037902,
+    "image": ""
+  },
+  {
+    "city": "Los Angeles, USA",
+    "lat": 34.0522342,
+    "lng": -118.2436849,
+    "image": ""
+  },
+  {
+    "city": "London, UK",
+    "lat": 51.5072178,
+    "lng": -0.1275862,
+    "image": ""
+  },
+  {
+    "city": "Amsterdam, Netherlands",
+    "lat": 52.3675734,
+    "lng": 4.9041389,
+    "image": ""
+  },
+  {
+    "city": "Tokyo, Japan",
+    "lat": 35.6803997,
+    "lng": 139.7690174,
+    "image": ""
+  },
+  {
+    "city": "Bangkok, Thailand",
+    "lat": 13.7563309,
+    "lng": 100.5017651,
+    "image": ""
+  },
+  {
+    "city": "Hong Kong, China",
+    "lat": 22.3192011,
+    "lng": 114.1696121,
+    "image": ""
+  },
+  {
+    "city": "Dubai, UAE",
+    "lat": 25.204849,
+    "lng": 55.2707828,
+    "image": ""
+  },
+  {
+    "city": "Singapore, Singapore",
+    "lat": 1.352083,
+    "lng": 103.819836,
+    "image": ""
+  },
+  {
+    "city": "Rome, Italy",
+    "lat": 41.9027835,
+    "lng": 12.4963655,
+    "image": ""
+  },
+  {
+    "city": "Istanbul, Turkey",
+    "lat": 41.0082376,
+    "lng": 28.9783589,
+    "image": ""
+  },
+  {
+    "city": "Mexico City, Mexico",
+    "lat": 19.4326077,
+    "lng": -99.133208,
+    "image": ""
+  },
+  {
+    "city": "Porto, Portugal",
+    "lat": 41.1579437,
+    "lng": -8.6291069,
+    "image": ""
+  },
+  {
+    "city": "Delhi, India",
+    "lat": 28.6139391,
+    "lng": 77.209021,
+    "image": ""
+  },
+  {
+    "city": "Kuala Lumpur, Malaysia",
+    "lat": 3.139003,
+    "lng": 101.686855,
+    "image": ""
+  },
+  {
+    "city": "Berlin, Germany",
+    "lat": 52.52000659999999,
+    "lng": 13.404954,
+    "image": ""
+  },
+  {
+    "city": "Budapest, Hungary",
+    "lat": 47.497912,
+    "lng": 19.040235,
+    "image": ""
+  },
+  {
+    "city": "Atenas, Greece",
+    "lat": 37.9791874,
+    "lng": 23.7275388,
+    "image": ""
+  }
+]

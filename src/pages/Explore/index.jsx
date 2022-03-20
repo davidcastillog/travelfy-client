@@ -1,4 +1,5 @@
 import "./Explore.css";
+import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getPlaces } from "../../api/TravelAPI";
 import { PlacesList, Map, SearchBox, Filters } from "../../components";
@@ -8,8 +9,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
-function Explore({ props }) {
-
+function Explore({props}) {
   const [user, setUser] = useState(null);
   const [coordinates, setCoordinates] = useState({});
   // Map Limits (NorthEast and SouthWest)
@@ -23,6 +23,8 @@ function Explore({ props }) {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingPlaces, setLoadingPlaces] = useState(false);
 
+  const location = useLocation();
+
   const verifyUser = async () => {
     const response = await getUserWS();
     if (response.status) {
@@ -33,9 +35,15 @@ function Explore({ props }) {
   const defaultGeoLocation = async () => {
     setIsLoading(true);
     try {
-      const defaultCoords = { lat: 48.856614, lng: 2.3522219 }; // "Paris, France" as default
-      setCoordinates(defaultCoords);
-      setIsLoading(false);
+        const isDestination = location.state.destinationCoordinates; // If is a destination from Home Page
+        if (isDestination) {
+        setCoordinates({lat: isDestination.lat, lng: isDestination.lng});
+        setIsLoading(false);
+      } else {
+        const defaultCoords = { lat: 48.856614, lng: 2.3522219 }; // "Paris, France" as default
+        setCoordinates(defaultCoords);
+        setIsLoading(false);
+      }
     } catch (error) {
       return error;
     }
@@ -68,7 +76,13 @@ function Explore({ props }) {
           <Grid item xs={12} md={6} className="search-box-grid">
             <SearchBox setCoordinates={setCoordinates} />
           </Grid>
-          <Grid item xs={12} md={6} className="filter-explore-grid" sx={{ justifyContent: 'center' }}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            className="filter-explore-grid"
+            sx={{ justifyContent: "center" }}
+          >
             <Filters
               type={type}
               setType={setType}
@@ -81,7 +95,7 @@ function Explore({ props }) {
           item
           xs={12}
           md={6}
-          style={{ maxHeight: "80vh", overflow: "auto"}}
+          style={{ maxHeight: "80vh", overflow: "auto" }}
         >
           <PlacesList
             loadingPlaces={loadingPlaces}
@@ -89,7 +103,13 @@ function Explore({ props }) {
             user={user}
           />
         </Grid>
-        <Grid item xs={12} md={6} className="map-grid" style={{ maxHeight: "100%" }}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          className="map-grid"
+          style={{ maxHeight: "100%" }}
+        >
           <Paper variant="outlined">
             {!isLoading && (
               <Map

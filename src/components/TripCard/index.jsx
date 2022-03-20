@@ -18,7 +18,6 @@ import Typography from "@mui/material/Typography";
 import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ShareIcon from "@mui/icons-material/Share";
 import EditIcon from "@mui/icons-material/Edit";
 
 const TripCard = ({ trip }) => {
@@ -103,9 +102,6 @@ const TripCard = ({ trip }) => {
           </IconButton>
           <IconButton aria-label="delete" onClick={handleDelete}>
             <DeleteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
           </IconButton>
         </CardActions>
       </Card>
