@@ -1,0 +1,16 @@
+.user-loc-grid {
+  margin: 0px !important;
+  border: solid 1px rgb(172, 172, 172);
+  border-radius: 7px;
+  padding-top: 9px;
+  padding-bottom: 10px;
+}
+
+.user-loc-wrapper{
+    padding-left: 100px !important;
+    padding-right: 2px;
+}
+
+.filters-grid-around{
+    padding-right: 10px !important;
+}

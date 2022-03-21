@@ -1,0 +1,122 @@
+[
+  {
+    "city": "Paris, France",
+    "lat": 48.856614,
+    "lng": 2.3522219,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827199/travelfy/paris_bbq1ka.jpg"
+  },
+  {
+    "city": "New York, USA",
+    "lat": 40.7127753,
+    "lng": -74.0059728,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827199/travelfy/newyork_wuem3e.jpg"
+  },
+  {
+    "city": "Madrid, Spain",
+    "lat": 40.4167754,
+    "lng": -3.7037902,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827199/travelfy/Madrid_m0ieog.jpg"
+  },
+  {
+    "city": "Los Angeles, USA",
+    "lat": 34.0522342,
+    "lng": -118.2436849,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827199/travelfy/losangeles_kfwenb.jpg"
+  },
+  {
+    "city": "London, UK",
+    "lat": 51.5072178,
+    "lng": -0.1275862,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827200/travelfy/london_dtltvr.jpg"
+  },
+  {
+    "city": "Amsterdam, Netherlands",
+    "lat": 52.3675734,
+    "lng": 4.9041389,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827201/travelfy/amsterdam_qwoerv.jpg"
+  },
+  {
+    "city": "Tokyo, Japan",
+    "lat": 35.6803997,
+    "lng": 139.7690174,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827202/travelfy/Tokyo_kokgh1.jpg"
+  },
+  {
+    "city": "Bangkok, Thailand",
+    "lat": 13.7563309,
+    "lng": 100.5017651,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827200/travelfy/Bangkok_w87fhz.jpg"
+  },
+  {
+    "city": "Hong Kong, China",
+    "lat": 22.3192011,
+    "lng": 114.1696121,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827204/travelfy/HongKong_f5ph3h.jpg"
+  },
+  {
+    "city": "Dubai, UAE",
+    "lat": 25.204849,
+    "lng": 55.2707828,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827200/travelfy/dubai_wkte6z.jpg"
+  },
+  {
+    "city": "Singapore",
+    "lat": 1.352083,
+    "lng": 103.819836,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827204/travelfy/Singapore_roizwu.jpg"
+  },
+  {
+    "city": "Rome, Italy",
+    "lat": 41.9027835,
+    "lng": 12.4963655,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827201/travelfy/rome_rkhypw.jpg"
+  },
+  {
+    "city": "Istanbul, Turkey",
+    "lat": 41.0082376,
+    "lng": 28.9783589,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827201/travelfy/istanbul_hc9puq.jpg"
+  },
+  {
+    "city": "Mexico City, Mexico",
+    "lat": 19.4326077,
+    "lng": -99.133208,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827202/travelfy/mexico_rngdpk.jpg"
+  },
+  {
+    "city": "Porto, Portugal",
+    "lat": 41.1579437,
+    "lng": -8.6291069,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827203/travelfy/Porto_y0om9n.jpg"
+  },
+  {
+    "city": "Delhi, India",
+    "lat": 28.6139391,
+    "lng": 77.209021,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827201/travelfy/Delhi_vxctqv.jpg"
+  },
+  {
+    "city": "Kuala Lumpur, Malaysia",
+    "lat": 3.139003,
+    "lng": 101.686855,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827204/travelfy/KualaLumpur_ogzarm.jpg"
+  },
+  {
+    "city": "Berlin, Germany",
+    "lat": 52.52000659999999,
+    "lng": 13.404954,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827200/travelfy/berlin_shzyfl.jpg"
+  },
+  {
+    "city": "Budapest, Hungary",
+    "lat": 47.497912,
+    "lng": 19.040235,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647827203/travelfy/Budapest_eohvp4.jpg"
+  },
+  {
+    "city": "Athens, Greece",
+    "lat": 37.9791874,
+    "lng": 23.7275388,
+    "image": "https://res.cloudinary.com/davidcastillog/image/upload/v1647822988/travelfy/atenas_m7o6wc.jpg"
+  }
+]

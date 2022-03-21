@@ -1,0 +1,16 @@
+.new-trip-actions{
+    justify-content: center !important;
+    background-color: rgb(242, 242, 242);
+}
+
+.trip-card-wrapper{
+    margin: 10px;
+}
+
+.social-share-div{
+    margin-top: 10px;
+}
+
+.card-content-wrapper{
+    padding-bottom: 0px !important;
+}
