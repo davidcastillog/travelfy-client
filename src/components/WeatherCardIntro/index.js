@@ -12,7 +12,7 @@ export default function WeatherCardIntro() {
       <CardMedia
         component="img"
         height="130"
-        image="https://bit.ly/3tYOZ66"
+        image="https://res.cloudinary.com/davidcastillog/image/upload/v1647463483/travelfy/7DayForecast_xuridd.jpg"
         alt="7 days forecast"
       />
       <CardContent>

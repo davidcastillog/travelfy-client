@@ -9,7 +9,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
-function Explore({props}) {
+function Explore({ props }) {
   const [user, setUser] = useState(null);
   const [coordinates, setCoordinates] = useState({});
   // Map Limits (NorthEast and SouthWest)
@@ -35,9 +35,14 @@ function Explore({props}) {
   const defaultGeoLocation = async () => {
     setIsLoading(true);
     try {
-        const isDestination = location.state.destinationCoordinates; // If is a destination from Home Page
-        if (isDestination) {
-        setCoordinates({lat: isDestination.lat, lng: isDestination.lng});
+      const destinationFromHome = location.state; // Check Location State
+      if (destinationFromHome) {
+        const destinationCoordinates =
+          destinationFromHome.destinationCoordinates; // Get Destination coordinates
+        setCoordinates({
+          lat: destinationCoordinates.lat,
+          lng: destinationCoordinates.lng,
+        });
         setIsLoading(false);
       } else {
         const defaultCoords = { lat: 48.856614, lng: 2.3522219 }; // "Paris, France" as default
@@ -72,14 +77,27 @@ function Explore({props}) {
     <>
       <CssBaseline />
       <Grid container spacing={2}>
-        <Grid container className="search-filter-grid" spacing={2}>
-          <Grid item xs={12} md={6} className="search-box-grid">
+        <Grid
+          container
+          className="search-filter-grid"
+          spacing={2}
+          sx={{ ml: 9 }}
+        >
+          <Grid
+            item
+            xs={12}
+            md={6}
+            mt={1}
+            className="search-box-grid"
+            sx={{ width: 300, mt: 2, pr: 2 }}
+          >
             <SearchBox setCoordinates={setCoordinates} />
           </Grid>
           <Grid
             item
             xs={12}
             md={6}
+            mt={1}
             className="filter-explore-grid"
             sx={{ justifyContent: "center" }}
           >
@@ -95,7 +113,8 @@ function Explore({props}) {
           item
           xs={12}
           md={6}
-          style={{ maxHeight: "80vh", overflow: "auto" }}
+          mt={1}
+          style={{ maxHeight: "75vh", overflow: "auto" }}
         >
           <PlacesList
             loadingPlaces={loadingPlaces}

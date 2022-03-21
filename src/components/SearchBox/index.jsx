@@ -7,7 +7,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 
 const SearchBox = ({ setCoordinates }) => {
-
   const { ref } = usePlacesWidget({
     apiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
     onPlaceSelected: (place) => {
@@ -21,7 +20,7 @@ const SearchBox = ({ setCoordinates }) => {
     <>
       <Box
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "65%" },
+          "& .MuiTextField-root": { width: "100%" },
         }}
         className="search-box-wrapper"
       >

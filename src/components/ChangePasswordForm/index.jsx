@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { styled } from "@mui/material/styles";
 import { changePasswordWS } from "../../services/authWs";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";

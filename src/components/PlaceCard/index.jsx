@@ -94,11 +94,13 @@ const PlaceCard = ({ place, userTrips, setUserTrips, user, isSaved }) => {
               </Typography>
             </div>
           )}
-          {place.address && (
+          {place.address ? (
             <Typography gutterBottom variant="body2" color="textSecondary">
               <LocationOnIcon fontSize="small" />
               {place.address}
             </Typography>
+          ) : (
+            <></>
           )}
           {place.website ? (
             <Button

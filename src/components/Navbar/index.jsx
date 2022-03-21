@@ -31,6 +31,9 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import Avatar from "@mui/material/Avatar";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import HttpsRoundedIcon from "@mui/icons-material/HttpsRounded";
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 
 const drawerWidth = 240;
 
@@ -126,7 +129,6 @@ export default function MiniDrawer({ user, ...props }) {
   const handleLogout = () => {
     logoutWS();
     props.authenticate();
-    setAnchorElUser(null);
     navigate("/login");
   };
 
@@ -167,6 +169,7 @@ export default function MiniDrawer({ user, ...props }) {
                 </Link>
               </div>
             </Typography>
+            {/* USER MENU */}
             <Box
               sx={{
                 display: "flex",
@@ -203,24 +206,32 @@ export default function MiniDrawer({ user, ...props }) {
                   to={"/profile"}
                   onClick={handleCloseUserMenu}
                 >
-                  <Typography textAlign="center">Profile</Typography>
+                  <ListItemIcon>
+                    <AccountCircleRoundedIcon />
+                  </ListItemIcon>
+                  Profile
                 </MenuItem>
                 <MenuItem
                   component={Link}
                   to={"/changepassword"}
                   onClick={handleCloseUserMenu}
                 >
-                  <Typography to="/changepassword" textAlign="center">
-                    Change Password
-                  </Typography>
+                  <ListItemIcon>
+                    <HttpsRoundedIcon />
+                  </ListItemIcon>
+                  Change Password
                 </MenuItem>
                 <MenuItem onClick={handleLogout}>
-                  <Typography textAlign="center">Logout</Typography>
+                  <ListItemIcon>
+                    <LogoutRoundedIcon />
+                  </ListItemIcon>
+                  Logout
                 </MenuItem>
               </Menu>
             </Box>
           </Toolbar>
         </AppBar>
+        {/* LEFT MENU¨ */}
         <Drawer variant="permanent" open={open}>
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>

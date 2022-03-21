@@ -10,7 +10,6 @@ const DestinationCard = ({ destination, i }) => {
 
   const handleOnClick = () => {
     navigate("/explore", {
-      // Send coordinates to Explore Page to use in Map component
       state: {
         destinationCoordinates: { lat: destination.lat, lng: destination.lng },
       },
@@ -19,7 +18,7 @@ const DestinationCard = ({ destination, i }) => {
 
   return (
     <Card
-      sx={{ maxWidth: 250, height: 240, maxHeight: 300 }}
+      sx={{ width: 250, height: 200, maxHeight: 300, ml:1, mt:1 }}
       i={i}
       onClick={handleOnClick}
     >

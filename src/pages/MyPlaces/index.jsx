@@ -7,6 +7,7 @@ import { getUserWS } from "../../services/authWs";
 import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 
 function MyPlaces({ props }) {
   const [user, setUser] = useState(null);
@@ -50,7 +51,7 @@ function MyPlaces({ props }) {
         setIsLoading(false);
         setIsSaved(true); // To display delete button in place card
       } else {
-        navigate("/mytrips")
+        navigate("/mytrips");
       }
       setIsLoading(false);
       setLoadingPlaces(false);
@@ -68,10 +69,17 @@ function MyPlaces({ props }) {
     <>
       <CssBaseline />
       <Grid container spacing={2} className="myplaces-grid">
+        <Grid item xs={12} md={12} className="search-box-grid">
+          <Typography variant="h5" gutterBottom component="div">
+            {trip.title}
+          </Typography>
+        </Grid>
+
         <Grid
           item
           xs={12}
           md={6}
+          mt={1}
           style={{ maxHeight: "80vh", overflow: "auto" }}
         >
           <PlacesList
@@ -81,7 +89,13 @@ function MyPlaces({ props }) {
             isSaved={isSaved}
           />
         </Grid>
-        <Grid item xs={12} md={6} style={{ maxHeight: "100%" }}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          className="map-grid"
+          style={{ maxHeight: "100%" }}
+        >
           <Paper variant="outlined">
             {!isLoading && (
               <MapPlaces coordinates={coordinates} places={places} zoom={12} />

@@ -5,8 +5,8 @@ const baseURL = "https://api.freegeoip.app/json/?apikey=";
 
 export const geoLocationData = async () => {
   try {
-    const res = await axios.get(baseURL + ipGeo);
-    return res.data;
+    const { data } = await axios.get(baseURL + ipGeo);
+    return data;
   } catch (error) {
     return error;
   }
