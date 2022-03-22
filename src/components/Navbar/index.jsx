@@ -34,6 +34,8 @@ import Avatar from "@mui/material/Avatar";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import HttpsRoundedIcon from "@mui/icons-material/HttpsRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import Button from "@mui/material/Button";
+import { grey } from "@mui/material/colors";
 
 const drawerWidth = 240;
 
@@ -108,6 +110,10 @@ export default function MiniDrawer({ user, ...props }) {
 
   const theme = useTheme();
 
+  const buttonColor = grey[900];
+  const buttonColorHover = grey[800];
+
+
   const navigate = useNavigate();
 
   const handleOpenUserMenu = (event) => {
@@ -124,6 +130,10 @@ export default function MiniDrawer({ user, ...props }) {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleLogin = () => {
+    navigate("/login");
   };
 
   const handleLogout = () => {
@@ -180,54 +190,71 @@ export default function MiniDrawer({ user, ...props }) {
               }}
               className="user-menu-appbar"
             >
-              <Tooltip title="Open Menu">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Travelfy User" src="https://bit.ly/3tlE1bC" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                <MenuItem
-                  component={Link}
-                  to={"/profile"}
-                  onClick={handleCloseUserMenu}
+              {user ? (
+                <>
+                  <Tooltip title="Open Menu">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <Avatar
+                        alt="Travelfy User"
+                        src="https://bit.ly/3tlE1bC"
+                      />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    sx={{ mt: "45px" }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    <MenuItem
+                      component={Link}
+                      to={"/profile"}
+                      onClick={handleCloseUserMenu}
+                    >
+                      <ListItemIcon>
+                        <AccountCircleRoundedIcon />
+                      </ListItemIcon>
+                      Profile
+                    </MenuItem>
+                    <MenuItem
+                      component={Link}
+                      to={"/changepassword"}
+                      onClick={handleCloseUserMenu}
+                    >
+                      <ListItemIcon>
+                        <HttpsRoundedIcon />
+                      </ListItemIcon>
+                      Change Password
+                    </MenuItem>
+                    <MenuItem onClick={handleLogout}>
+                      <ListItemIcon>
+                        <LogoutRoundedIcon />
+                      </ListItemIcon>
+                      Logout
+                    </MenuItem>
+                  </Menu>
+                </>
+              ) : (
+                <Button
+                  onClick={handleLogin}
+                  variant="contained"
+                  // Hover buttonColorHover
+                  sx={{ backgroundColor: buttonColor, '&:hover': { backgroundColor: buttonColorHover } }}
                 >
-                  <ListItemIcon>
-                    <AccountCircleRoundedIcon />
-                  </ListItemIcon>
-                  Profile
-                </MenuItem>
-                <MenuItem
-                  component={Link}
-                  to={"/changepassword"}
-                  onClick={handleCloseUserMenu}
-                >
-                  <ListItemIcon>
-                    <HttpsRoundedIcon />
-                  </ListItemIcon>
-                  Change Password
-                </MenuItem>
-                <MenuItem onClick={handleLogout}>
-                  <ListItemIcon>
-                    <LogoutRoundedIcon />
-                  </ListItemIcon>
-                  Logout
-                </MenuItem>
-              </Menu>
+                  <AccountCircleRoundedIcon fontSize="small" sx={{mr:1}}/>
+                  Login
+                </Button>
+              )}
             </Box>
           </Toolbar>
         </AppBar>
