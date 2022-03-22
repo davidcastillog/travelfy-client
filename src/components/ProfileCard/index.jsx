@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { updateUserWS } from "../../services/authWs";
+import { uploadWs } from "../../services/uploadWs";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
@@ -23,19 +25,41 @@ const ProfileCard = ({ user, ...props }) => {
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
 
-  const handleChange = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
-    setMessage(null);
-    setError(null);
-  };
+  const navigate = useNavigate();
 
   const Input = styled("input")({
     display: "none",
   });
 
+  // Set state on profile changes
+  const handleChange = (event) => {
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+    setMessage(null); // Clear message
+    setError(null); // Clear error
+  };
+
+  // Profile Image Upload
+  const handleUpload = async (e) => {
+    const image = e.target.files[0];
+    const formData = new FormData();
+    formData.append("images", image);
+    uploadWs(formData)
+      .then((res) => {
+        setValues({
+          ...values,
+          profilePic: res.data.result.newPath.url,
+        });
+        setMessage(res.data.msg);
+      })
+      .catch((err) => {
+        setError(err);
+      });
+  };
+
+  // Save Changes to User Profile
   const handleFormSubmission = (event) => {
     event.preventDefault();
     try {
@@ -43,6 +67,9 @@ const ProfileCard = ({ user, ...props }) => {
         if (response.status) {
           setMessage("Profile updated successfully");
           setError(null);
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
         } else {
           setError(response.errorMessage);
         }
@@ -125,7 +152,7 @@ const ProfileCard = ({ user, ...props }) => {
                 <div>
                   <Avatar
                     alt="Travelfy User"
-                    src="https://bit.ly/3tlE1bC"
+                    src={values.profilePic}
                     className="avatar-div"
                     sx={{ alignSelf: "center" }}
                   />
@@ -136,6 +163,7 @@ const ProfileCard = ({ user, ...props }) => {
                     id="icon-button-file"
                     name="profilePic"
                     type="file"
+                    onChange={handleUpload}
                   />
                   <IconButton
                     color="primary"

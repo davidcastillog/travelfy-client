@@ -1,9 +1,9 @@
 import { apiServer } from "../api/ServerAPI";
 import { successStatus, internalServerError } from "../utils/clear-res";
 
-export const uploadWs = (files) =>
+export const uploadWs = (file) =>
   apiServer
-    .post("/upload", files, {
+    .post("/upload", file, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

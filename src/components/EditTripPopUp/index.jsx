@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { updateTrip } from "../../services/tripsWs";
+import { uploadWs } from "../../services/uploadWs";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -11,12 +14,23 @@ import LuggageIcon from "@mui/icons-material/Luggage";
 import Stack from "@mui/material/Stack";
 import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import Avatar from "@mui/material/Avatar";
 
 const EditTripPopUp = ({ open, setOpen, trip, ...props }) => {
   const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
   const [values, setValues] = useState({
     title: trip.title,
     description: trip.description,
+    tripImage: trip.tripImage,
+  });
+
+  console.log("VALUES", values);
+
+  const Input = styled("input")({
+    display: "none",
   });
 
   const handleChange = (event) => {
@@ -26,10 +40,28 @@ const EditTripPopUp = ({ open, setOpen, trip, ...props }) => {
     });
     setError(null);
   };
+
   const handleClose = (event, reason) => {
     if (reason !== "backdropClick") {
       setOpen(false);
     }
+  };
+
+  const handleUpload = async (e) => {
+    const image = e.target.files[0];
+    const formData = new FormData();
+    formData.append("images", image);
+    uploadWs(formData)
+      .then((res) => {
+        setValues({
+          ...values,
+          tripImage: res.data.result.newPath.url,
+        });
+        setMessage(res.data.msg);
+      })
+      .catch((err) => {
+        setError(err);
+      });
   };
 
   const editTripSave = async (e) => {
@@ -47,7 +79,7 @@ const EditTripPopUp = ({ open, setOpen, trip, ...props }) => {
     <>
       <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>
         <DialogTitle>Edit your Trip</DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ pb: 0 }}>
           <Stack direction="column" spacing={1} sx={{ width: 250 }}>
             <FormControl sx={{ m: 1, mr: 0, ml: 0, minWidth: 150 }}>
               <TextField
@@ -77,10 +109,54 @@ const EditTripPopUp = ({ open, setOpen, trip, ...props }) => {
                 onChange={handleChange}
               />
             </FormControl>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <div>
+                <Avatar
+                  alt="Travelfy User"
+                  src={trip.tripImage}
+                  className="avatar-div"
+                  sx={{ alignSelf: "center", mt: 2 }}
+                />
+              </div>
+              <label htmlFor="icon-button-file">
+                <Input
+                  accept="image/*"
+                  id="icon-button-file"
+                  name="tripImage"
+                  type="file"
+                  onChange={handleUpload}
+                />
+                <IconButton
+                  color="primary"
+                  aria-label="upload picture"
+                  component="span"
+                >
+                  <PhotoCamera />
+                </IconButton>
+              </label>
+            </Box>
+            {error && (
+              <Box sx={{ m: 2, textAlign: "center" }}>
+                <Typography variant="body2" color="error">
+                  {error}
+                </Typography>
+              </Box>
+            )}
+            {message && (
+              <Box sx={{ m: 2, textAlign: "center" }}>
+                <Typography variant="body2" color="primary">
+                  {message}
+                </Typography>
+              </Box>
+            )}
           </Stack>
-          <Typography variant="body2" color="error">
-            {error && <p>{error.errorMessage}</p>}
-          </Typography>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
