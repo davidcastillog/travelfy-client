@@ -9,7 +9,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-const Login = () => {
+const Login = (props) => {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -42,6 +42,7 @@ const Login = () => {
       const { data, status, errorMessage } = await loginWS(credentials);
       if (status) {
         navigate("/mytrips");
+        props.authenticate(data.user)
         return data;
       } else {
         setError(errorMessage);

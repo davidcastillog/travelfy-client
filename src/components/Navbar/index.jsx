@@ -138,7 +138,8 @@ export default function MiniDrawer({ user, ...props }) {
 
   const handleLogout = () => {
     logoutWS();
-    props.authenticate();
+    setAnchorElUser(null)
+    props.handleLogout()
     navigate("/login");
   };
 

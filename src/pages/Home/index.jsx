@@ -36,8 +36,6 @@ export default function HomePage({ user, ...props }) {
     handleSearch();
   }, [coordinates]);
 
-  console.log("Coordinates Homes", coordinates);
-
   return (
     <>
       <Grid
