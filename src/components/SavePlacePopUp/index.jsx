@@ -1,4 +1,3 @@
-import "./SavePlacePopUp.css";
 import { useState } from "react";
 import { createPlace } from "../../services/placesWs";
 import { createTrip } from "../../services/tripsWs";

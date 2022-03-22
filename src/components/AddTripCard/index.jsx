@@ -16,6 +16,7 @@ const AddTripCard = () => {
   const handleClickOpen = () => {
     setOpen(true);
   };
+  
   return (
     <>
       <Card sx={{ maxWidth: 275 }} className="trip-card-wrapper">

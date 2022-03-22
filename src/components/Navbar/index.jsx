@@ -249,7 +249,6 @@ export default function MiniDrawer({ user, ...props }) {
                 <Button
                   onClick={handleLogin}
                   variant="contained"
-                  // Hover buttonColorHover
                   sx={{ backgroundColor: buttonColor, '&:hover': { backgroundColor: buttonColorHover } }}
                 >
                   <AccountCircleRoundedIcon fontSize="small" sx={{mr:1}}/>
