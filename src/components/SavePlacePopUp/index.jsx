@@ -67,10 +67,14 @@ const SavePlacePopUp = ({
   };
 
   const savePlace = () => {
+    let address = ""
+    if(place.location){
+      address = place.location.address
+    }
     const newPlace = {
       name: place.name,
       placeImages: place.photo.images.large.url,
-      address: place.location.address || "",
+      address,
       rating: place.rating,
       lat: place.latitude,
       lng: place.longitude,

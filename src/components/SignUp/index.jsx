@@ -9,7 +9,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-const SignUp = () => {
+const SignUp = (props) => {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -43,6 +43,7 @@ const SignUp = () => {
       .then((response) => {
         if (response.status) {
           navigate("/mytrips");
+          props.authenticate(response.data.user)
         } else {
           setError(response.errorMessage);
         }
