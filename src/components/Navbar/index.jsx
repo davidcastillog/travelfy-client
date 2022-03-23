@@ -110,6 +110,8 @@ export default function MiniDrawer({ user, ...props }) {
 
   const theme = useTheme();
 
+  const defaultPic = "https://bit.ly/3tlE1bC";
+
   const buttonColor = grey[900];
   const buttonColorHover = grey[800];
 
@@ -197,7 +199,7 @@ export default function MiniDrawer({ user, ...props }) {
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                       <Avatar
                         alt="Travelfy User"
-                        src="https://bit.ly/3tlE1bC"
+                        src={user.profilePic || defaultPic}
                       />
                     </IconButton>
                   </Tooltip>
@@ -249,7 +251,6 @@ export default function MiniDrawer({ user, ...props }) {
                 <Button
                   onClick={handleLogin}
                   variant="contained"
-                  // Hover buttonColorHover
                   sx={{ backgroundColor: buttonColor, '&:hover': { backgroundColor: buttonColorHover } }}
                 >
                   <AccountCircleRoundedIcon fontSize="small" sx={{mr:1}}/>

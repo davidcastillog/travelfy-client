@@ -10,6 +10,7 @@ import {
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { deleteTrip, getAllPlacesFromTrip } from "../../services/tripsWs";
+import EditTripPopUp from "../EditTripPopUp";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -22,8 +23,9 @@ import EditIcon from "@mui/icons-material/Edit";
 
 const TripCard = ({ trip }) => {
   const [places, setPlaces] = useState([]);
+  const [open, setOpen] = useState(false);
 
-  const shareUrl = `http://www.travelfy.com/trips/share/${trip._id}/places`;
+  const shareUrl = `http://travelfy.netlify.app/trips/share/${trip._id}/places`;
 
   const placesFromTrip = async () => {
     const havePlaces = await getAllPlacesFromTrip(trip._id);
@@ -37,13 +39,17 @@ const TripCard = ({ trip }) => {
     window.location.reload();
   };
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
   useEffect(() => {
     placesFromTrip();
   }, []);
 
   return (
     <>
-      <Card sx={{ maxWidth: 275 }} className="trip-card-wrapper">
+      <Card sx={{ width: 250, maxWidth: 275 }} className="trip-card-wrapper">
         {places.length > 0 ? (
           <Link
             to={`/trips/${trip._id}/places`}
@@ -73,36 +79,37 @@ const TripCard = ({ trip }) => {
             {trip.description}
           </Typography>
           <div className="social-share-div">
-          <Typography variant="subtitle2" color="text.secondary">
-            Share on:
-          </Typography>
+            <Typography variant="subtitle2" color="text.secondary">
+              Share on:
+            </Typography>
             <TwitterShareButton
               url={shareUrl}
               title={`This is my travel list "${trip.title}" @Travelfy`}
             >
-              <TwitterIcon size={29} round={true}/>
+              <TwitterIcon size={29} round={true} />
             </TwitterShareButton>
             <FacebookShareButton
               url={shareUrl}
               quote={`This is my travel list "${trip.title}" @Travelfy`}
             >
-              <FacebookIcon size={29} round={true}/>
+              <FacebookIcon size={29} round={true} />
             </FacebookShareButton>
             <WhatsappShareButton
               url={shareUrl}
               title={`This is my travel list "${trip.title}" @Travelfy`}
             >
-              <WhatsappIcon size={29} round={true} m={1}  />
+              <WhatsappIcon size={29} round={true} m={1} />
             </WhatsappShareButton>
           </div>
         </CardContent>
         <CardActions disableSpacing className="new-trip-actions">
-          <IconButton aria-label="edit">
+          <IconButton aria-label="edit" onClick={handleClickOpen}>
             <EditIcon />
           </IconButton>
           <IconButton aria-label="delete" onClick={handleDelete}>
             <DeleteIcon />
           </IconButton>
+          <EditTripPopUp trip={trip} open={open} setOpen={setOpen} />
         </CardActions>
       </Card>
     </>
