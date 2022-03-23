@@ -49,7 +49,7 @@ const TripCard = ({ trip }) => {
 
   return (
     <>
-      <Card sx={{ maxWidth: 275 }} className="trip-card-wrapper">
+      <Card sx={{ width: 250, maxWidth: 275 }} className="trip-card-wrapper">
         {places.length > 0 ? (
           <Link
             to={`/trips/${trip._id}/places`}

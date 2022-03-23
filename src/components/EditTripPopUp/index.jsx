@@ -120,8 +120,8 @@ const EditTripPopUp = ({ open, setOpen, trip, ...props }) => {
               <div>
                 <Avatar
                   alt="Travelfy User"
-                  src={trip.tripImage}
-                  className="avatar-div"
+                  variant="rounded"
+                  src={values.tripImage}
                   sx={{ alignSelf: "center", mt: 2 }}
                 />
               </div>
