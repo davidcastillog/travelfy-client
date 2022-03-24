@@ -18,7 +18,7 @@ const DestinationCard = ({ destination, i }) => {
 
   return (
     <Card
-      sx={{ width: 250, height: 200, maxHeight: 300, ml:1, mt:1 }}
+      sx={{ width: 260, height: 200, maxHeight: 300, ml:1, mt:1 }}
       i={i}
       onClick={handleOnClick}
     >

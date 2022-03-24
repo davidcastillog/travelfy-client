@@ -13,6 +13,7 @@ export { default as NewTripForm } from "./NewTripForm";
 export { default as AddTripCard } from "./AddTripCard";
 export { default as WeatherCard } from "./WeatherCard";
 export { default as PlaceMarker } from "./PlaceMarker";
+export { default as HomeAddCard } from "./HomeAddCard";
 export { default as NewTripPopUp } from "./NewTripPopUp";
 export { default as EditTripPopUp } from "./EditTripPopUp";
 export { default as NoPlacesFound } from "./NoPlacesFound";

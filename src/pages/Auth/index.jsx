@@ -1,4 +1,3 @@
-import "./Auth.css";
 import Container from "@mui/material/Container";
 import { Login, SignUp } from "../../components";
 import { getUserWS } from "../../services/authWs";

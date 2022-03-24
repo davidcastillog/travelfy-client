@@ -1,8 +1,9 @@
 import "./Home.css";
 import jsonData from "../../assets/destinations.json";
+import jsonQuotes from "../../assets/quotes.json";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { DestinationCard, EditTripPopUp, SearchBox } from "../../components";
+import { DestinationCard, SearchBox, HomeAddCard } from "../../components";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import HomeBanner from "../../assets/images/homebanner.jpg";
@@ -16,6 +17,9 @@ export default function HomePage({ user, ...props }) {
   const randomDestinations = citiesData
     .sort(() => 0.5 - Math.random())
     .slice(0, 4);
+
+  const quotes = [...jsonQuotes];
+  const getRandom = quotes[Math.floor(Math.random() * quotes.length)];
 
   const navigate = useNavigate();
 
@@ -80,7 +84,7 @@ export default function HomePage({ user, ...props }) {
               <SearchBox setCoordinates={setCoordinates} />
             </Paper>
             <Typography variant="h6" mt={1}>
-              Plan your next adventure!
+              {getRandom.quote}
             </Typography>
           </Box>
         </Box>
@@ -89,13 +93,14 @@ export default function HomePage({ user, ...props }) {
           sx={{
             display: "flex",
             flexWrap: "wrap",
-            flexDirection: "row",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            mt: 1,
+            mt: 2,
             ml: 5,
           }}
         >
+          <HomeAddCard />
           <Typography variant="h5" mt={1}>
             Popular destinations
           </Typography>
@@ -110,6 +115,7 @@ export default function HomePage({ user, ...props }) {
             justifyContent: "center",
             mt: 1,
             ml: 5,
+            mb: 5,
           }}
         >
           {randomDestinations.map((destination, i) => (
