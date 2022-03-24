@@ -51,12 +51,16 @@ const EditTripPopUp = ({ open, setOpen, trip, ...props }) => {
     formData.append("images", image);
     uploadWs(formData)
       .then((res) => {
-        let resData = res.data
-        setValues({
-          ...values,
-          tripImage: resData.result.newPath.url,
-        });
-        setMessage(res.data.msg);
+        if(res.status){
+          let resData = res.data
+          setValues({
+            ...values,
+            tripImage: resData.result.newPath.url,
+          });
+          setMessage(res.data.msg);
+        } else {
+          console.log(res.errorMessage)
+        }
       })
       .catch((err) => {
         setError(err);
