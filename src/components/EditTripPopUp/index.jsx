@@ -59,7 +59,7 @@ const EditTripPopUp = ({ open, setOpen, trip, ...props }) => {
           });
           setMessage(res.data.msg);
         } else {
-          console.log(res.errorMessage)
+          return error
         }
       })
       .catch((err) => {
