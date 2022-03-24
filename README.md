@@ -1,25 +1,141 @@
-# Getting Started with Create React App
+<div id="top"></div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/davidcastillog/travelfy-client">
+    <img src="/travelfy-client/src/assets/images/travelfy-logo-blue.jpg" alt="travelfy Logo" width="250" height="75" alt="Travelfy">
+  </a>
+  <h3 align="center">Travel planner</h3>
+     MERN stack app
+    <br />
+   <a href="https://travelfy.netlify.app/">View Demo</a>
+</div>
 
-## Available Scripts
+<!-- TABLE OF CONTENTS -->
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#api">API required</a></li>
+    <li><a href="#scripts">Scripts</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
 
-In the project directory, you can run:
 
-### `npm start`
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
+![Travelfy Screenshot][product-screenshot]
+
+This is a travel planner MERN stack app.
+
+You will find:
+* Attractions, hotels and restaurants from anywhere in the world. Map and Place list. :earth_americas:
+* Save the places you love in a trip list. (MongoDB = Reduce API calls) :world_map:
+* Around me section. (This will get the user's IP, find the lat&lng with it and show the map and places around)
+* 7-day weather forecast for any city. :umbrella:	
+* User Profile (Profile image, username, name, change password)
+* Google Maps and Google Autocomplete.
+
+<p align="right"><a href="#top">back to top ^</a></p>
+
+
+### Built With
+
+* [React.js](https://reactjs.org/)
+* [Material-UI](https://mui.com/)
+* [Node.js](https://nodejs.org/en/)
+* [Express.js](https://expressjs.com/)
+* [MongoDB](https://www.mongodb.com/)
+
+<p align="right"><a href="#top">back to top ^</a></p>
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+Verify if you already have Node.js and npm installed:
+  ```sh
+  node -v
+  npm -v
+  ```
+
+ To download the latest version of npm, on the command line, run the following command:
+  ```sh
+  npm install -g npm
+  ```
+
+### Installation
+
+_Follow this simple steps:_
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/davidcastillog/travelfy-client.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Enter all your API keys in `.env` file
+   ```js
+   REACT_APP_NAME_API = 'ENTER YOUR API';
+   ```
+
+**Note:**
+* This is the Front-end (client) repository.
+* You **must** clone the [Back-end (server) repository.](https://github.com/davidcastillog/travelfy-server)
+
+<p align="right"><a href="#top">back to top ^</a></p>
+
+<!-- API LIST -->
+## API
+
+**Client**:
+* [Google Maps](https://developers.google.com/maps)
+* [Open Weather](https://openweathermap.org/api)
+* [Rapid API Travel](https://rapidapi.com/apidojo/api/travel-advisor)
+* [FreeGeoIp](https://freegeoip.app/)
+
+**Server**:
+* [Cloudinary](https://cloudinary.com/)
+
+<p align="right"><a href="#top">back to top ^</a></p>
+
+<!-- SCRIPTS -->
+## Scripts
+
+In the project directory:
+
+ ```sh
+  npm start
+ ```
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
+ ```sh
+  npm run build
+ ```
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -27,44 +143,54 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- USAGE EXAMPLES -->
+## Usage
 
-### `npm run eject`
+ <div align="center">
+ <h3 >Place list</h3>
+  <p>Includes Google Autocomplete & place filters</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Travelfy Screenshot][product-screenshot2]
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ <h3 >My Trips</h3>
+  <p>Save places for each trip </p>
+  <br />
+  <p>(Map with trip markers)</p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Travelfy Screenshot][product-screenshot3]
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  <h3>Weather</h3>
+  <p>7-day forecast for any city in the world</p>
 
-## Learn More
+![Travelfy Screenshot][product-screenshot4]
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+ </div>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<p align="right"><a href="#top">back to top ^</a></p>
 
-### Code Splitting
+<!-- LICENSE -->
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-### Analyzing the Bundle Size
+<p align="right"><a href="#top">back to top ^</a></p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+<!-- CONTACT -->
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Linkedin: [https://linkedin.com/in/davidcastillog](https://linkedin.com/in/davidcastillog) 
 
-### Advanced Configuration
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+David Castillo - [@davidcastillog](https://twitter.com/davidcastillog)
 
-### Deployment
+<p align="right"><a href="#top">back to top ^</a></p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- MARKDOWN LINKS & IMAGES -->
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/davidcastillog
+[product-screenshot]: /travelfy-client/src/assets/images/home.jpg
+[product-screenshot2]: /travelfy-client/src/assets/images/explore.jpg
+[product-screenshot3]: /travelfy-client/src/assets/images/mytrips.jpg
+[product-screenshot4]: /travelfy-client/src/assets/images/weather.jpg

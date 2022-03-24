@@ -54,12 +54,3 @@ export const getUserWS = async () => {
     return internalServerError(error);
   }
 };
-
-export const googleWS = async () => {
-  try {
-    const res = await apiServer.post('/auth/google');
-    return successStatus(res);
-  } catch (error) {
-    return internalServerError(error);
-  }
-};

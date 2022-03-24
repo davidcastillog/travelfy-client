@@ -27,8 +27,6 @@ const EditTripPopUp = ({ open, setOpen, trip, ...props }) => {
     tripImage: trip.tripImage,
   });
 
-  console.log("VALUES", values);
-
   const Input = styled("input")({
     display: "none",
   });
@@ -53,9 +51,10 @@ const EditTripPopUp = ({ open, setOpen, trip, ...props }) => {
     formData.append("images", image);
     uploadWs(formData)
       .then((res) => {
+        let resData = res.data
         setValues({
           ...values,
-          tripImage: res.data.result.newPath.url,
+          tripImage: resData.result.newPath.url,
         });
         setMessage(res.data.msg);
       })
