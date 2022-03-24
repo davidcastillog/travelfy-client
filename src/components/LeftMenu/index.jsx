@@ -1,1 +1,0 @@
-import './LeftMenu.css'

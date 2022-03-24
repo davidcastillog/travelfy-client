@@ -67,7 +67,7 @@ You will find:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these example steps:
 
 ### Prerequisites
 
@@ -101,7 +101,7 @@ _Follow this simple steps:_
 
 **Note:**
 * This is the Front-end (client) repository.
-* You **must** clone the [Back-end (server) repository.](https://github.com/davidcastillog/travelfy-server)
+* You **need** to clone the [Back-end (server) repository.](https://github.com/davidcastillog/travelfy-server)
 
 <p align="right"><a href="#top">back to top ^</a></p>
 
@@ -143,6 +143,8 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
+<p align="right"><a href="#top">back to top ^</a></p>
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
@@ -154,8 +156,7 @@ Your app is ready to be deployed!
 
  <h3 >My Trips</h3>
   <p>Save places for each trip </p>
-  <br />
-  <p>(Map with trip markers)</p>
+  <p>Map with trip markers</p>
 
 ![Travelfy Screenshot][product-screenshot3]
 
@@ -171,24 +172,30 @@ Your app is ready to be deployed!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `License.txt` for more information.
+
+![license][license-shield]
 
 <p align="right"><a href="#top">back to top ^</a></p>
 
 
 <!-- CONTACT -->
 ## Contact
+David Castillo
+<br/>
+[![twitter][twitter-shield]][twitter-url]
 
 Linkedin: [https://linkedin.com/in/davidcastillog](https://linkedin.com/in/davidcastillog) 
 
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-David Castillo - [@davidcastillog](https://twitter.com/davidcastillog)
-
 <p align="right"><a href="#top">back to top ^</a></p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
+[twitter-shield]:https://img.shields.io/twitter/follow/davidcastillog?style=social
+[license-shield]:https://img.shields.io/github/license/davidcastillog/travelfy-client?style=for-the-badge
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[twitter-url]:https://twitter.com/davidcastillog
 [linkedin-url]: https://linkedin.com/in/davidcastillog
 [product-screenshot]: https://github.com/davidcastillog/travelfy-client/blob/master/src/assets/images/home.jpg
 [product-screenshot2]: https://github.com/davidcastillog/travelfy-client/blob/master/src/assets/images/explore.jpg
