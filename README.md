@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/davidcastillog/travelfy-client">
-    <img src="https://github.com/davidcastillog/travelfy-client/src/assets/images/travelfy-logo-blue.jpg" alt="travelfy Logo" width="250" height="75" alt="Travelfy">
+    <img src="https://github.com/davidcastillog/travelfy-client/blob/master/src/assets/images/travelfy-logo-blue.jpg" alt="travelfy Logo" width="250" height="75" alt="Travelfy">
   </a>
   <h3 align="center">Travel planner</h3>
      MERN stack app
@@ -190,7 +190,7 @@ David Castillo - [@davidcastillog](https://twitter.com/davidcastillog)
 <!-- MARKDOWN LINKS & IMAGES -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/davidcastillog
-[product-screenshot]: https://github.com/davidcastillog/travelfy-client/src/assets/images/home.jpg
-[product-screenshot2]: https://github.com/davidcastillog/travelfy-client/src/assets/images/explore.jpg
-[product-screenshot3]: https://github.com/davidcastillog/travelfy-client/src/assets/images/mytrips.jpg
-[product-screenshot4]: https://github.com/davidcastillog/travelfy-client/src/assets/images/weather.jpg
+[product-screenshot]: https://github.com/davidcastillog/travelfy-client/blob/master/src/assets/images/home.jpg
+[product-screenshot2]: https://github.com/davidcastillog/travelfy-client/blob/master/src/assets/images/explore.jpg
+[product-screenshot3]: https://github.com/davidcastillog/travelfy-client/blob/master/src/assets/images/mytrips.jpg
+[product-screenshot4]: https://github.com/davidcastillog/travelfy-client/blob/master/src/assets/images/weather.jpg
