@@ -14,7 +14,6 @@ function AroundMe(props) {
   const [user, setUser] = useState(null);
   // User location from IP
   const [coordinates, setCoordinates] = useState({});
-  console.log('Coordinates',coordinates)
   const [userLoc, setUserLoc] = useState({});
   // Map Limits (NorthEast and SouthWest)
   const [limits, setLimits] = useState();
