@@ -14,6 +14,7 @@ function AroundMe(props) {
   const [user, setUser] = useState(null);
   // User location from IP
   const [coordinates, setCoordinates] = useState({});
+  console.log('Coordinates',coordinates)
   const [userLoc, setUserLoc] = useState({});
   // Map Limits (NorthEast and SouthWest)
   const [limits, setLimits] = useState();
@@ -31,8 +32,10 @@ function AroundMe(props) {
     setIsLoading(true);
     try {
       const res = await geoLocationData();
-      const { latitude: lat, longitude: lng, city, country_name } = res;
+      const { latitude: lat, longitude: lng } = res.data.location
       setCoordinates({ lat, lng });
+      const { name: city } = res.data.location.city
+      const { name: country_name } = res.data.location.country
       setUserLoc({ city, country_name });
       setIsLoading(false);
     } catch (error) {
