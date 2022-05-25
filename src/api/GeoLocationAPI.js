@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const ipGeo = process.env.REACT_APP_GEO_API;
-const baseURL = "https://api.freegeoip.app/json/?apikey=";
+const baseURL = "https://api.ipbase.com/v2/info?apikey=";
 
 export const geoLocationData = async () => {
   try {
